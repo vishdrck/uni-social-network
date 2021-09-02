@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+/* Adding bootstrap support */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.no-margin {
+  margin: 0;
+}
+.no-padding {
+  padding: 0;
+}
