@@ -1,4 +1,23 @@
 .login-background {
-  background-color: rgb(29, 126, 126);
-  height: 100vh;
+  background-color: #F9F9F9;
+  height: 100%;
+  /* overflow: hidden; */
+}
+.login-welcome-title {
+  font-size: 3.0em;
+  margin-top: 50px;
+}
+.login-welcome-subtitle {
+  font-size: 1.3em;
+}
+.login-image {
+  width: 60%;
+}
+.spacer-toolbar {
+  align-content: flex-end;
+}
+.col-centered {
+  display: block;
+  float: none;
+  margin: 0 auto;
 }

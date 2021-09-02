@@ -1,3 +1,31 @@
-<div class="container-fluid login-background no-margin no-padding">
-
+<div class="login-background">
+  <mat-toolbar color="primary">
+    <div class="container">
+      <span>YATTER</span>
+    </div>
+  </mat-toolbar>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="login-welcome-title text-center">Welcome to Yatter</p>
+        <p class="login-welcome-subtitle text-center">
+          Share your memories, connect with others, make new friends
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="text-center">
+          <img src="../../../assets/login-img.png" alt="" class="login-image" />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <mat-card class="col-centered">
+          <div class="row">
+            <router-outlet></router-outlet>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </div>
