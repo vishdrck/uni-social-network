@@ -10,3 +10,43 @@
   align-items: center;
   width: 100%;
 }
+.hr-heading {
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+}
+.hr-heading-text {
+  position: relative;
+  display: inline-block;
+  color: #999;
+}
+.hr-heading-text::before {
+  right: 100%;
+  margin-right: 15px;
+}
+.hr-heading-text:after, .hr-heading-text::before {
+  position: absolute;
+  top: 50%;
+  width: 99999px;
+  height: 1px;
+  background-color: #ddd;
+  content: '';
+}
+.hr-heading-text:after{
+  left: 100%;
+  margin-left: 15px;
+
+}
+.hr-heading-text:after, .hr-heading-text:before {
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: #ddd;
+    content: '';
+}
+
+.link {
+  text-decoration: none;
+}
