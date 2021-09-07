@@ -10,6 +10,7 @@
     background-color: mat-color($app-primary);
     margin-left: 0px;
     margin-right: 0px;
+    z-index: 99999;
 
     &__copyright {
       text-align: center;
