@@ -4,7 +4,8 @@
 .login-background {
   background-color: #F9F9F9;
   height: 100%;
-  /* overflow: hidden; */
+  display: block;
+  overflow: auto;
 }
 .login-welcome-title {
   font-size: 3.0em;
