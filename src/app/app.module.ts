@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { WallComponent } from './pages/wall/wall.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     LoginPageComponent,
     LoginFormComponent,
     RegistrationFormComponent,
-    FooterComponent
+    FooterComponent,
+    WallComponent,
+    SideMenuComponent
   ],
   imports: [
     BrowserModule,

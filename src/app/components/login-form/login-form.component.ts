@@ -1,5 +1,6 @@
 import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
@@ -15,7 +16,10 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
     remember: new FormControl('')
   });
 
-  constructor(public spinner: NgxSpinnerService) { }
+  constructor(
+    public spinner: NgxSpinnerService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.spinner.show();
@@ -30,7 +34,7 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-
+    this.router.navigate(['/account/vishdrck/r'], {});
   }
 
 }
