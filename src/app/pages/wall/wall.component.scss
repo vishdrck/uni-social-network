@@ -22,9 +22,11 @@
   &__active-menu-item {
     color: mat-color($app-primary);
   }
+
+  &__post_container {
+    margin: 10px 50px;
+  }
 }
-
-
 
 .logo {
   width: 125px;

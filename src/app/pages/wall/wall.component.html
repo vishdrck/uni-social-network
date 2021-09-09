@@ -20,14 +20,13 @@
     <app-side-menu></app-side-menu>
   </mat-sidenav>
 
-  <mat-sidenav-content style="overflow: hidden">
-    <div class="container">
-      <div class="col-lg-12">
-        <mat-card class="post">
-          <mat-card-header>
-            <div mat-card-header class="post__header-image"></div>
-          </mat-card-header>
-        </mat-card>
+  <mat-sidenav-content style="overflow: scroll">
+    <div class="container wall__post_container">
+      <div class="row">
+        <div class="col-sm-7">
+          <app-posts></app-posts>
+        </div>
+        <div class="col-sm-5"></div>
       </div>
     </div>
   </mat-sidenav-content>

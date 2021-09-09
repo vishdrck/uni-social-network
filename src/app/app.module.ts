@@ -13,6 +13,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { WallComponent } from './pages/wall/wall.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { PostsComponent } from './components/posts/posts.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     RegistrationFormComponent,
     FooterComponent,
     WallComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    PostsComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
