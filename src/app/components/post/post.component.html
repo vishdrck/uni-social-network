@@ -1,15 +1,26 @@
 <mat-card class="post">
   <mat-card-header>
-    <div mat-card-avatar class="post__header-image" style="background-image: url('/assets/uploads/profile.jpg');"></div>
-    <mat-card-title>{{title}}</mat-card-title>
-    <mat-card-subtitle>{{subTitle}}</mat-card-subtitle>
+    <div
+      mat-card-avatar
+      class="post__header-image"
+      style="background-image: url('/assets/uploads/profile.jpg')"
+    ></div>
+    <mat-card-title>{{ title }}</mat-card-title>
+    <mat-card-subtitle>{{ subTitle }}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="{{imagePath}}">
-  <mat-card-content>
-  </mat-card-content>
+  <img mat-card-image src="{{ imagePath }}" />
+  <mat-card-content> </mat-card-content>
   <mat-card-actions>
-    <button style="width:31%;" mat-button>Like</button>
-    <button style="width:31%;" mat-button>Comment</button>
-    <button style="width:31%;" mat-button>Share</button>
+    <div style="text-align: left;position: absolute;margin: 0 10px;">
+      <a href="#" class="float-right" style="text-decoration: none;">{{ noOfComments }} Likes</a>
+    </div>
+    <div style="text-align: right;width: 95%;position: absolute;margin: 0 10px;">
+      <a href="#" class="float-right" style="text-decoration: none;">{{ noOfComments }} Comments</a>
+    </div>
+  </mat-card-actions>
+  <mat-card-actions>
+    <button style="width: 31%" mat-button>Like</button>
+    <button style="width: 31%" mat-button>Comment</button>
+    <button style="width: 31%" mat-button>Share</button>
   </mat-card-actions>
 </mat-card>
