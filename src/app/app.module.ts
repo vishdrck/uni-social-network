@@ -17,6 +17,7 @@ import { PostsComponent } from './components/posts/posts.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SvgIconComponent } from './Elements/svg-icon/svg-icon.component';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SvgIconComponent } from './Elements/svg-icon/svg-icon.component';
     SideMenuComponent,
     PostsComponent,
     CreatePostComponent,
-    SvgIconComponent
+    SvgIconComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
