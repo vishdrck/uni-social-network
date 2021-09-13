@@ -1,1 +1,35 @@
-<p>create-post works!</p>
+<mat-accordion class="create-post">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <div mat-card-avatar class="create-post__logo"></div>
+      <mat-form-field
+        class="example-form-field"
+        style="width: 100%"
+        appearance="standard"
+      >
+        <input
+          matInput
+          type="text"
+          placeholder="What is on your mind? #Hashtag.. @Mention.. Link.."
+        />
+      </mat-form-field>
+    </mat-expansion-panel-header>
+    <div class="create-post__container">
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <mat-chip-list class="mat-chip-list-stacked" area-label="">
+            <mat-chip class="text-center">
+              <mat-icon class="create-post__icon" svgIcon="camera"></mat-icon>
+              Photo
+            </mat-chip>
+            <mat-chip class="text-center">
+              <mat-icon class="create-post__icon" svgIcon="checkin"></mat-icon
+              >Check In
+              </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-md-6">wrwer</div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

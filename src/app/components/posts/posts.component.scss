@@ -1,6 +1,6 @@
 .post {
   display: block;
-  margin: 0px 30px;
+  // margin: 0px 30px;
 
   &__header-image {
     background-image: url('/assets/uploads/profile.jpg');
@@ -8,11 +8,3 @@
   }
 }
 
-.example-card {
-  max-width: 400px;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}

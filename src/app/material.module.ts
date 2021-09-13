@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule  } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
@@ -66,7 +66,8 @@ import { from } from 'rxjs';
     MatDialogModule,
     MatBottomSheetModule
   ],
-  exports: [MatTabsModule,
+  exports: [
+    MatTabsModule,
     MatDividerModule,
     MatSliderModule,
     MatSelectModule,

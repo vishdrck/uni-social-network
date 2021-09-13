@@ -15,6 +15,7 @@ import { WallComponent } from './pages/wall/wall.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    HttpClientModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
