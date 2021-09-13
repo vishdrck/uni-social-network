@@ -25,5 +25,6 @@ export class IconService {
 
 export enum Icons {
   camera = 'camera',
-  checkin ='checkin'
+  checkin = 'checkin',
+  feeling = 'feeling'
 }

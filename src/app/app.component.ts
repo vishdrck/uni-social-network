@@ -9,7 +9,7 @@ import { IconService } from './services/icon.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'uni-social-network';
+  title = 'Yatter Social Network';
   constructor(private iconService: IconService) {
     iconService.registerIcons();
   }
