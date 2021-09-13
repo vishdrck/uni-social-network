@@ -18,7 +18,7 @@ export class SvgIconComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.svgContent = `<img class="mat-icon notranslate mat-icon-no-color ${this.customSVGCss}" src=${this.svgPath}/${this.icon}.svg>`;
+    this.svgContent = ``;
 
   }
 
