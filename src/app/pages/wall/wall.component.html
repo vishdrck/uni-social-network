@@ -1,8 +1,20 @@
-<mat-toolbar
-  color="primary"
-  class=""
-  style="padding-top: 10px"
->
+<mat-toolbar color="primary" class="" style="padding-top: 10px">
+  <button
+    mat-icon-button
+    *ngIf="!sidenav.opened"
+    (click)="sidenav.toggle()"
+    matTooltip="Toggle Side Panel"
+  >
+    <mat-icon aria-label="menu" style="margin-bottom: 4px">menu</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    *ngIf="sidenav.opened"
+    (click)="sidenav.toggle()"
+    matTooltip="Toggle Side Panel"
+  >
+    <mat-icon aria-label="menu" style="margin-bottom: 4px">menu_open</mat-icon>
+  </button>
   <div class="toolbar-container">
     <span><img class="logo" src="../../../assets/logo.svg" /></span>
   </div>
@@ -20,7 +32,7 @@
     <app-side-menu></app-side-menu>
   </mat-sidenav>
 
-  <mat-sidenav-content style="overflow: scroll;background-color: white;">
+  <mat-sidenav-content style="overflow: scroll; background-color: white">
     <div class="container wall__post_container">
       <div class="row">
         <div class="col-sm-7">
