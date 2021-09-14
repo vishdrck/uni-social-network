@@ -1,4 +1,12 @@
-@import '../../theme.colors.scss';
+@import "../../theme.colors.scss";
+
+.toolbar-container {
+  width: 100%;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 .wall {
   height: calc(100vh-36px);
@@ -30,4 +38,34 @@
 
 .logo {
   width: 125px;
+}
+
+@media (min-width: 576px) {
+    .toolbar-container {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 768px) {
+    .toolbar-container {
+    max-width: 875px;
+  }
+}
+
+@media (min-width: 992px) {
+    .toolbar-container {
+    max-width: 895px;
+  }
+}
+
+@media (min-width: 1200px) {
+    .toolbar-container {
+    max-width: 1090px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .toolbar-container {
+    max-width: 1475px;
+  }
 }
