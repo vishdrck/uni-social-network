@@ -18,6 +18,9 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { HttpClientModule } from '@angular/common/http';
 import { SvgIconComponent } from './Elements/svg-icon/svg-icon.component';
 import { PostComponent } from './components/post/post.component';
+import { DialogAddAPostComponent } from './popups/add-post/popups.components';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { PostComponent } from './components/post/post.component';
     PostsComponent,
     CreatePostComponent,
     SvgIconComponent,
-    PostComponent
+    PostComponent,
+    DialogAddAPostComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +45,15 @@ import { PostComponent } from './components/post/post.component';
     MaterialModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxDropzoneModule,
+    TextareaAutosizeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogAddAPostComponent
+  ]
 })
 export class AppModule { }

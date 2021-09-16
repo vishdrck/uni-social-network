@@ -6,6 +6,10 @@
     margin-right: 10px;
   }
 
+  &__chip_spacer {
+    width: 100%;
+  }
+
   &__logo {
     background-image: url('/assets/logo.min.svg');
     background-repeat: no-repeat;
@@ -16,5 +20,14 @@
 
   &__icon {
     margin: 0 5px;
+  }
+}
+
+@media (max-width: 767px) {
+  .create-post {
+    &__chip_spacer {
+    margin-top: 8px;
+    width: 100%;
+  }
   }
 }

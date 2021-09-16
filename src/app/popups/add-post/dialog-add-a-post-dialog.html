@@ -1,0 +1,115 @@
+<h2 mat-dialog-title>Share your wonderful memories with friends</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container" style="width: 100%">
+    <div class="row">
+      <div class="text-area-container">
+        <mat-form-field appearance="outline" style="width: 100%">
+          <textarea matInput placeholder="What is on your mind?"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" *ngIf="postType=='standard'">
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drag and drop an image</ngx-dropzone-label>
+        <ngx-dropzone-preview
+          *ngFor="let f of files"
+          [removable]="true"
+          (removed)="onRemove(f)"
+        >
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </div>
+    <div
+      class="row text-center"
+      style="margin-bottom: 5px"
+      *ngIf="postType=='coloredPost'"
+    >
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-red"
+        (click)="setColor('colored-post__pattern-item-red')"
+      ></div>
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-cyan"
+        (click)="setColor('colored-post__pattern-item-cyan')"
+      ></div>
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-purple"
+        (click)="setColor('colored-post__pattern-item-purple')"
+      ></div>
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-blue"
+        (click)="setColor('colored-post__pattern-item-blue')"
+      ></div>
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-green"
+        (click)="setColor('colored-post__pattern-item-green')"
+      ></div>
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-yellow"
+        (click)="setColor('colored-post__pattern-item-yellow')"
+      ></div>
+      <div
+        class="
+          colored-post__pattern-item colored-post__pattern-item-purple-black
+        "
+        (click)="setColor('colored-post__pattern-item-purple-black')"
+      ></div>
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-pink-black"
+        (click)="setColor('colored-post__pattern-item-pink-black')"
+      ></div>
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-red-black"
+        (click)="setColor('colored-post__pattern-item-red-black')"
+      ></div>
+      <div
+        class="colored-post__pattern-item colored-post__pattern-item-blue-black"
+        (click)="setColor('colored-post__pattern-item-blue-black')"
+      ></div>
+      <div
+        class="
+          colored-post__pattern-item colored-post__pattern-item-orange-black
+        "
+        (click)="setColor('colored-post__pattern-item-orange-black')"
+      ></div>
+    </div>
+    <div class="row" *ngIf="postType=='coloredPost'">
+      <div
+        class="colored-post__container colored-post__pattern-item-red"
+        [ngClass]="getClass()"
+      >
+        <div class="colored-post__text-wrapper">
+          <textarea
+            autosize
+            class="colored-post__text-area"
+            matInput
+            placeholder="Type here!"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="postType=='checkin'">
+      <div class="text-area-container">
+        <mat-form-field appearance="outline" style="width: 100%">
+          <input matInput placeholder="Where are you?" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" *ngIf="postType=='feeling'">
+      <div class="text-area-container">
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-select>
+            <mat-option *ngFor="let type of feelingTypes" [value]="type.key">
+              <svg-icon class="" style="display: inline-block;margin-left: 5px;margin-right: 10px;" icon="{{type.key}}"></svg-icon>{{type.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-button [mat-dialog-close]="false">Publish</button>
+</mat-dialog-actions>
