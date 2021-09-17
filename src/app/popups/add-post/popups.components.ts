@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import * as autosize from 'autosize';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-dialog-add-a-post-dialog',
@@ -10,7 +10,7 @@ import * as autosize from 'autosize';
 export class DialogAddAPostComponent implements OnInit {
   files: File[] = [];
   className: string;
-
+  feelingControl = new FormControl(null);
 
 
   feelingTypes: iFeeling[] = [
@@ -53,8 +53,11 @@ export class DialogAddAPostComponent implements OnInit {
   }
 
   onRemove(event: any) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  onSelected(feelingType: string) {
+    this.feelingControl.setValue(feelingType);
   }
 
 }

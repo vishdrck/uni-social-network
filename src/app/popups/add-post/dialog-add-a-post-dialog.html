@@ -92,16 +92,23 @@
     <div class="row" *ngIf="postType=='checkin'">
       <div class="text-area-container">
         <mat-form-field appearance="outline" style="width: 100%">
-          <input matInput placeholder="Where are you?" />
+          <input matInput placeholder="Where are you?"/>
         </mat-form-field>
       </div>
     </div>
     <div class="row" *ngIf="postType=='feeling'">
       <div class="text-area-container">
-        <mat-form-field appearance="outline" style="width: 100%">
-          <mat-select>
+        <mat-chip-list aria-label="Your feelings" style="display: inline-block;margin-right: 20px;">
+          <mat-chip>How are you feeling?</mat-chip>
+          <mat-chip *ngIf="feelingControl.value!=null" (click)="feelingControl.setValue(null)"><svg-icon class="" style="display: inline-block;margin-left: 5px;margin-right: 10px;"
+            icon="{{feelingControl.value}}"></svg-icon>{{feelingControl.value}}</mat-chip>
+        </mat-chip-list>
+        <mat-form-field *ngIf="feelingControl.value==null" appearance="outline" style="width: 45%;right: 0">
+          <mat-select [formControl]="feelingControl">
             <mat-option *ngFor="let type of feelingTypes" [value]="type.key">
-              <svg-icon class="" style="display: inline-block;margin-left: 5px;margin-right: 10px;" icon="{{type.key}}"></svg-icon>{{type.value}}
+              <svg-icon class="" style="display: inline-block;margin-left: 5px;margin-right: 10px;"
+                        icon="{{type.key}}"></svg-icon>
+              {{type.value}}
             </mat-option>
           </mat-select>
         </mat-form-field>
