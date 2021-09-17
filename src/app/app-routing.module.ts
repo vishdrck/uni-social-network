@@ -4,6 +4,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { WallComponent } from './pages/wall/wall.component';
+import {ProfileComponent} from "./components/profile/profile.component";
+import {WallPostsComponent} from "./components/wall-posts/wall-posts.component";
 
 const routes: Routes = [
   {
@@ -36,11 +38,16 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'account/:username',
+    path: 'account/feeds',
+    component: WallComponent,
     children: [
       {
-        path: 'r',
-        component: WallComponent,
+        path: '',
+        component: WallPostsComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
       }
     ]
   }

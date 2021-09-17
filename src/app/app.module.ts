@@ -21,6 +21,8 @@ import { PostComponent } from './components/post/post.component';
 import { DialogAddAPostComponent } from './popups/add-post/popups.components';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import { ProfileComponent } from './components/profile/profile.component';
+import { WallPostsComponent } from './components/wall-posts/wall-posts.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
     CreatePostComponent,
     SvgIconComponent,
     PostComponent,
-    DialogAddAPostComponent
+    DialogAddAPostComponent,
+    ProfileComponent,
+    WallPostsComponent
   ],
   imports: [
     BrowserModule,
