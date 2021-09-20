@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginFormComponent } from './components/login-form/login-form.component';
-import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { WallComponent } from './pages/wall/wall.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginFormComponent} from './components/login-form/login-form.component';
+import {RegistrationFormComponent} from './components/registration-form/registration-form.component';
+import {LoginPageComponent} from './pages/login-page/login-page.component';
+import {WallComponent} from './pages/wall/wall.component';
 import {ProfileComponent} from "./components/profile/profile.component";
 import {WallPostsComponent} from "./components/wall-posts/wall-posts.component";
+import {FriendsComponent} from "./pages/friends/friends.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,9 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      }, {
+        path: 'friends',
+        component: FriendsComponent
       }
     ]
   }
@@ -57,4 +61,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

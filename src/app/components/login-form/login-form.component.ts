@@ -34,7 +34,7 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    this.router.navigate(['/account/vishdrck/r'], {});
+    this.router.navigate(['/account/feeds'], {});
   }
 
 }

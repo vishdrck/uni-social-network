@@ -8,8 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SvgIconComponent implements OnInit {
   @Input() icon = '';
   svgContent: string;
-  customParentCss: string;
-  customSVGCss: string;
+  @Input() customParentCss: string;
+  @Input() customSVGCss;
   svgPath = '/assets/svg/icons';
   constructor() {
     this.svgContent = '';

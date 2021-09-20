@@ -23,6 +23,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { ProfileComponent } from './components/profile/profile.component';
 import { WallPostsComponent } from './components/wall-posts/wall-posts.component';
+import { FriendsComponent } from './pages/friends/friends.component';
+import { FriendCardComponent } from './components/friend-card/friend-card.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { WallPostsComponent } from './components/wall-posts/wall-posts.component
     PostComponent,
     DialogAddAPostComponent,
     ProfileComponent,
-    WallPostsComponent
+    WallPostsComponent,
+    FriendsComponent,
+    FriendCardComponent
   ],
   imports: [
     BrowserModule,
