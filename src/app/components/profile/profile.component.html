@@ -2,6 +2,11 @@
   <mat-card class="profile">
     <mat-card-header class="profile__cover">
       <div class="profile__avatar"></div>
+      <div class="profile__message">
+        <button mat-fab color="white" aria-label="Message">
+          <svg-icon icon="chat"></svg-icon>
+        </button>
+      </div>
     </mat-card-header>
     <mat-card-content class="profile__content">
       <div class="container-fluid pt-3">
@@ -12,46 +17,64 @@
                 <mat-label>First Name</mat-label>
                 <input type="text" pattern="[A-Za-z]+" matInput placeholder="First Name" formControlName="firstName"
                        required>
-                <mat-icon matSuffix>perm_identity</mat-icon>
+                <svg-icon matSuffix customSVGCss="display: block" icon="worker"></svg-icon>
                 <mat-hint>John</mat-hint>
                 <mat-error>First Name is required</mat-error>
               </mat-form-field>
-              <mat-form-field [formGroup]="editProfileFormGroup" class="w-full" appearance="outline">
+              <mat-form-field class="w-full" appearance="outline">
                 <mat-label>Last Name</mat-label>
                 <input type="text" pattern="[A-Za-z]+" matInput placeholder="Last Name" formControlName="lastName">
-                <mat-icon matSuffix>perm_identity</mat-icon>
+                <svg-icon matSuffix customSVGCss="display: block" icon="man"></svg-icon>
                 <mat-hint>Doe</mat-hint>
                 <mat-error>Last Name is required</mat-error>
               </mat-form-field>
-              <mat-form-field [formGroup]="editProfileFormGroup" class="w-half" style="margin-right: 2%;"
+              <mat-form-field class="w-half" style="margin-right: 2%;"
                               appearance="outline">
                 <mat-label>Email Address</mat-label>
                 <input type="email" matInput placeholder="Email Address" formControlName="email" required>
-                <mat-icon matSuffix>email</mat-icon>
+                <svg-icon matSuffix customSVGCss="display: block" icon="email"></svg-icon>
                 <mat-hint>example@abc.com</mat-hint>
                 <mat-error>Email Address is required</mat-error>
               </mat-form-field>
-              <mat-form-field [formGroup]="editProfileFormGroup" class="w-half" appearance="outline">
+              <mat-form-field class="w-half" appearance="outline">
                 <mat-label>Index Number</mat-label>
                 <input type="text" pattern="[A-Za-z]+" matInput placeholder="Index Number" formControlName="indexNumber"
                        required>
-                <mat-icon matSuffix>school</mat-icon>
+                <svg-icon matSuffix customSVGCss="display: block" icon="idea"></svg-icon>
                 <mat-hint>AS2018575</mat-hint>
                 <mat-error>Index Number is required</mat-error>
               </mat-form-field>
-              <mat-form-field [formGroup]="editProfileFormGroup" class="w-half" style="margin-right: 2%;"
+              <mat-form-field class="w-half" style="margin-right: 2%;" appearance="outline">
+                <mat-label>Combination</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let combination of combinationList" [value]="combination.key">{{combination.value}}</mat-option>
+                </mat-select>
+                <svg-icon matSuffix customSVGCss="display: block" icon="team"></svg-icon>
+                <mat-hint>AS2018575</mat-hint>
+                <mat-error>Combination is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-half" appearance="outline">
+                <mat-label>Department</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let department of departmentList" [value]="department.key">{{department.value}}</mat-option>
+                </mat-select>
+                <svg-icon matSuffix customSVGCss="display: block" icon="fire-department"></svg-icon>
+                <mat-hint>AS2018575</mat-hint>
+                <mat-error>Index Number is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-half" style="margin-right: 2%;"
                               appearance="outline">
                 <mat-label>Username</mat-label>
                 <input type="text" pattern="[A-Za-z]+" matInput placeholder="Username" formControlName="username"
                        required>
-                <mat-icon matSuffix>stars</mat-icon>
+                <svg-icon matSuffix customSVGCss="display: block" icon="username"></svg-icon>
                 <mat-hint>johndoe</mat-hint>
                 <mat-error>Username is required</mat-error>
               </mat-form-field>
-              <mat-form-field [formGroup]="editProfileFormGroup" class="w-half" appearance="outline">
+              <mat-form-field class="w-half" appearance="outline">
                 <mat-label>Password</mat-label>
                 <input type="text" [minLength]="6" matInput placeholder="Password" formControlName="username" required>
-                <mat-icon matSuffix>password</mat-icon>
+                <svg-icon matSuffix customSVGCss="display: block" icon="password"></svg-icon>
                 <mat-hint>123456</mat-hint>
                 <mat-error>Invalid Password Policy. Password should meet minimum 6 length characters.</mat-error>
               </mat-form-field>
@@ -65,7 +88,6 @@
         <div class="row pb-3">
           <div class="col-sm-12">
             <button color="primary" mat-raised-button>Update</button>
-
           </div>
         </div>
 

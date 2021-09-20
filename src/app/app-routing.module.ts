@@ -52,6 +52,10 @@ const routes: Routes = [
       }, {
         path: 'friends',
         component: FriendsComponent
+      },
+      {
+        path: 'people',
+        component: ProfileComponent
       }
     ]
   }
