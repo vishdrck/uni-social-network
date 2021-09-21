@@ -1,15 +1,34 @@
 <mat-card class="friends-card friends-card__cover">
 
+  <!--  <div class="row">-->
+  <!--    <h2 class="text-center">Vishwajith Weerasinghe</h2>-->
+  <!--  </div>-->
   <div class="row">
-    <h2 class="text-center">Vishwajith Weerasinghe</h2>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5 text-center">
       <div class="friends-card__ friends-card__avatar"></div>
     </div>
-    <div class="col-md-6">
-      <button mat-raised-button style="margin-top: 10px;width: 100%" color="primary">Add Friend</button>
-      <button mat-raised-button style="margin-top: 5px;width: 100%" color="accent" routerLink="/account/feeds/people">View Profile</button>
+    <div class="col-md-7 text-center">
+      <div class="friends-card__name_title">
+        <h5 class="text-center"><b>Vishwajith Weerasinghe</b></h5>
+      </div>
+      <div class="friends-card__name_title">
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip color="primary" selected>2018/19</mat-chip>
+          <mat-chip color="accent" selected>FAS</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div class="friends-card__name_title">
+        <button mat-icon-button aria-label="">
+          <svg-icon customSVGCss="" icon="add_user"></svg-icon>
+          <svg-icon *ngIf="false" customSVGCss="" icon="added-user"></svg-icon>
+        </button>
+        <button mat-icon-button aria-label="">
+          <svg-icon customSVGCss="" icon="chat"></svg-icon>
+<!--          <mat-icon>home</mat-icon>-->
+        </button>
+      </div>
+      <!--      <button mat-raised-button style="margin-top: 10px;width: 100%" color="primary">Add Friend</button>-->
+      <!--      <button mat-raised-button style="margin-top: 5px;width: 100%" color="accent" routerLink="/account/feeds/people">View Profile</button>-->
     </div>
   </div>
 </mat-card>
