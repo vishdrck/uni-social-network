@@ -38,3 +38,17 @@
     margin: 10px 16px;
   }
 }
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 100%;
+}
+
+@media screen and (min-width: 1240px) {
+  .half-width {
+    width: 49%;
+  }
+}
