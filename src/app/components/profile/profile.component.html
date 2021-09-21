@@ -44,7 +44,16 @@
                 <mat-hint>AS2018575</mat-hint>
                 <mat-error>Index Number is required</mat-error>
               </mat-form-field>
-              <mat-form-field class="half-width" style="margin-right: 2%;" appearance="outline">
+              <mat-form-field class="half-width" appearance="outline" style="margin-right: 2%;">
+                <mat-label>Academic Year</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let academicYear of academicYearList" [value]="academicYear.key">{{academicYear.value}}</mat-option>
+                </mat-select>
+                <svg-icon matSuffix customSVGCss="display: block" icon="university"></svg-icon>
+                <mat-hint>2018/19</mat-hint>
+                <mat-error>Academic Year is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="outline">
                 <mat-label>Combination</mat-label>
                 <mat-select>
                   <mat-option *ngFor="let combination of combinationList" [value]="combination.key">{{combination.value}}</mat-option>
@@ -53,13 +62,22 @@
                 <mat-hint>AS2018575</mat-hint>
                 <mat-error>Combination is required</mat-error>
               </mat-form-field>
+              <mat-form-field class="half-width" appearance="outline" style="margin-right: 2%;">
+                <mat-label>Faculty</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let faculty of facultiesList" [value]="faculty.key">{{faculty.value}}</mat-option>
+                </mat-select>
+                <svg-icon matSuffix customSVGCss="display: block" icon="university"></svg-icon>
+                <mat-hint>Faculty of Applied Sciences</mat-hint>
+                <mat-error>Faculty is required</mat-error>
+              </mat-form-field>
               <mat-form-field class="half-width" appearance="outline">
                 <mat-label>Department</mat-label>
                 <mat-select>
                   <mat-option *ngFor="let department of departmentList" [value]="department.key">{{department.value}}</mat-option>
                 </mat-select>
                 <svg-icon matSuffix customSVGCss="display: block" icon="fire-department"></svg-icon>
-                <mat-hint>AS2018575</mat-hint>
+                <mat-hint>Department of Computer Science</mat-hint>
                 <mat-error>Index Number is required</mat-error>
               </mat-form-field>
               <mat-form-field class="half-width" style="margin-right: 2%;"
