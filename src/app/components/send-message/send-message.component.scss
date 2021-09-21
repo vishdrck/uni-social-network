@@ -1,0 +1,20 @@
+.send-chat {
+  height: 100px;
+  &__container {
+    background-color: #e8e8e8;
+    height: 500px;
+    max-height: 500px;
+    border-radius: 4px;
+
+  }
+  &__form-field {
+    position: absolute;
+    bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  &__view {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}

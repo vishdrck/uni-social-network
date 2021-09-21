@@ -25,6 +25,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { WallPostsComponent } from './components/wall-posts/wall-posts.component';
 import { FriendsComponent } from './pages/friends/friends.component';
 import { FriendCardComponent } from './components/friend-card/friend-card.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { SendMessageComponent } from './components/send-message/send-message.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { FriendCardComponent } from './components/friend-card/friend-card.compon
     ProfileComponent,
     WallPostsComponent,
     FriendsComponent,
-    FriendCardComponent
+    FriendCardComponent,
+    ChatComponent,
+    SendMessageComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,6 @@ export class SvgIconComponent implements OnInit {
 
   ngOnInit(): void {
     this.svgContent = ``;
-
   }
 
 }

@@ -1,0 +1,26 @@
+.chat {
+  position: fixed;
+
+  &__container {
+    margin-top: 20px;
+  }
+  &__header-image {
+    background-image: url('/assets/svg/icons/chat_typing.svg');
+    background-size: contain;
+  }
+  &__avatar{
+    background-image: url('/assets/uploads/profile.jpg');
+    background-size: cover;
+  }
+
+  &__list {
+    overflow: auto;
+    max-height: 500px;
+  }
+
+  &__go-back {
+    position: absolute;
+    right: 33px;
+  }
+
+}
