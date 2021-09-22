@@ -17,4 +17,23 @@
     height: 100%;
     overflow-y: scroll;
   }
+
+  &__view-container {
+    margin: 10px;
+  }
+
+  &__msg-avatar-img{
+    height: 40px;
+    width: 40px;
+    border:1.5px solid #000000;
+  }
+
+  &__msg-container {
+    margin: auto 0 auto 10px;
+    border-radius: 25px;
+    background-color: #000000;
+    padding: 10px 15px;
+    position: relative;
+    color: white;
+  }
 }

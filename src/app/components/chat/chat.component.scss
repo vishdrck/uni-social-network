@@ -3,6 +3,8 @@
 
   &__container {
     margin-top: 20px;
+    position: fixed;
+    width: 31%;
   }
   &__header-image {
     background-image: url('/assets/svg/icons/chat_typing.svg');

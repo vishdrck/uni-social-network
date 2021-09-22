@@ -1,10 +1,38 @@
 <div class="send-chat send-chat__container">
   <div class="send-chat__view">
-
+    <div class="send-chat__view-container">
+      <div class="d-flex justify-content-start mb-4">
+        <div class="send-chat__msg-avatar">
+          <img class="rounded-circle send-chat__msg-avatar-img" src="/assets/uploads/profile.jpg">
+        </div>
+        <div class="send-chat__msg-container">
+          Hi How are you?
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mb-4">
+        <div class="send-chat__msg-avatar">
+          <img class="rounded-circle send-chat__msg-avatar-img" src="/assets/uploads/profile.jpg">
+        </div>
+        <div class="send-chat__msg-container">
+          Hi Whats up?
+        </div>
+      </div>
+      <div class="d-flex justify-content-start mb-4">
+        <div class="send-chat__msg-avatar">
+          <img class="rounded-circle send-chat__msg-avatar-img" src="/assets/uploads/profile.jpg">
+        </div>
+        <div class="send-chat__msg-container">
+          Nothing special! Whats about you?
+        </div>
+      </div>
+    </div>
   </div>
   <div class="w-full position-relative">
     <mat-form-field appearance="outline" class="send-chat__form-field" style="width: 100%">
       <input matInput type="text" placeholder="Enter message">
+      <button mat-icon-button matSuffix [attr.aria-label]="'Send Message'">
+        <svg-icon customSVGCss="display: block;" icon="right-arrow"></svg-icon>
+      </button>
     </mat-form-field>
   </div>
 </div>

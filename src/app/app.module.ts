@@ -49,18 +49,18 @@ import { SendMessageComponent } from './components/send-message/send-message.com
     ChatComponent,
     SendMessageComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    HttpClientModule,
-    NgxDropzoneModule,
-    TextareaAutosizeModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        HttpClientModule,
+        NgxDropzoneModule,
+        TextareaAutosizeModule
+    ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],
