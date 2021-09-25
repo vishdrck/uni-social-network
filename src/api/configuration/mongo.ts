@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 import environment from '../env';
 import logger from '../helpers/logger';
@@ -8,15 +8,10 @@ export class MongoConnection {
     const mongoDB = `mongodb://localhost/${environment.getDBName()}`;
 
     // @ts-ignore
-    mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-
-    // @ts-ignore
-    mongoose.set('useCreateIndex', true);
-    // @ts-ignore
-    mongoose.set('useFindAndModify', false);
-    // @ts-ignore
-    mongoose.set('useUnifiedTopology', true);
-
+    mongoose.connect(mongoDB, error => {
+      if(error)
+        logger.error(error.message);
+    });
 
     const db = mongoose.connection;
 
