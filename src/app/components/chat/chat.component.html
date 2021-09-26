@@ -1,0 +1,69 @@
+<div style="position: relative;">
+  <mat-card class="chat__container">
+    <mat-card-header>
+      <!--    <div mat-card-avatar class="chat__header-image"></div>-->
+      <svg-icon mat-card-avatar icon="chat_typing"></svg-icon>
+      <mat-card-title>
+        Messages
+      </mat-card-title>
+      <button *ngIf="messageView" class="chat__go-back" mat-icon-button matTooltip="Go Back" (click)="messageView=false">
+        <svg-icon icon="previous"></svg-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="container-fluid no-padding">
+        <div class="row">
+          <div [ngClass]="messageView? 'd-none':'col-sm-12'">
+            <mat-selection-list class="chat__list" (selectionChange)="changeMessageView($event)" #chatList
+                                [multiple]="false">
+              <mat-list-option>
+                <div mat-list-icon class="chat__avatar"></div>
+                <div mat-line class="text-medium">Vishwajith Weerasinghe</div>
+                <div mat-line class="text-small">Hello There!..</div>
+              </mat-list-option>
+              <mat-list-option>
+                <div mat-list-icon class="chat__avatar"></div>
+                <div mat-line class="text-medium">Vishwajith Weerasinghe</div>
+                <div mat-line class="text-small">Hello There!..</div>
+              </mat-list-option>
+              <mat-list-option>
+                <div mat-list-icon class="chat__avatar"></div>
+                <div mat-line class="text-medium">Vishwajith Weerasinghe</div>
+                <div mat-line class="text-small">Hello There!..</div>
+              </mat-list-option>
+              <mat-list-option>
+                <div mat-list-icon class="chat__avatar"></div>
+                <div mat-line class="text-medium">Vishwajith Weerasinghe</div>
+                <div mat-line class="text-small">Hello There!..</div>
+              </mat-list-option>
+              <mat-list-option>
+                <div mat-list-icon class="chat__avatar"></div>
+                <div mat-line class="text-medium">Vishwajith Weerasinghe</div>
+                <div mat-line class="text-small">Hello There!..</div>
+              </mat-list-option>
+              <mat-list-option>
+                <div mat-list-icon class="chat__avatar"></div>
+                <div mat-line class="text-medium">Vishwajith Weerasinghe</div>
+                <div mat-line class="text-small">Hello There!..</div>
+              </mat-list-option>
+              <mat-list-option>
+                <div mat-list-icon class="chat__avatar"></div>
+                <div mat-line class="text-medium">Vishwajith Weerasinghe</div>
+                <div mat-line class="text-small">Hello There!..</div>
+              </mat-list-option>
+              <mat-list-option>
+                <div mat-list-icon class="chat__avatar"></div>
+                <div mat-line class="text-medium">Vishwajith Weerasinghe</div>
+                <div mat-line class="text-small">Hello There!..</div>
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+          <div [ngClass]="messageView?'col-sm-12':'d-none'">
+            <app-send-message></app-send-message>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

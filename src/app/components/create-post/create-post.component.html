@@ -1,0 +1,52 @@
+<mat-accordion class="create-post">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <div mat-card-avatar class="create-post__logo"></div>
+      <mat-form-field
+        class="example-form-field"
+        style="width: 100%"
+        appearance="standard"
+      >
+        <input
+          matInput
+          type="text"
+          placeholder="What is on your mind? #Hashtag.. @Mention.. Link.."
+          disabled="true"
+        />
+      </mat-form-field>
+    </mat-expansion-panel-header>
+    <div class="create-post__container">
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <mat-chip-list class="mat-chip-list-stacked" area-label="">
+            <mat-chip (click)="addStandardPhoto()">
+              <svg-icon class="create-post__icon" icon="camera"></svg-icon>
+              Photo
+            </mat-chip>
+            <mat-chip (click)="addCheckin()">
+              <svg-icon class="create-post__icon" icon="checkin"></svg-icon
+              >Check In
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="col-md-6">
+          <mat-chip-list class="mat-chip-list-stacked" area-label="">
+            <div class="create-post__chip_spacer">
+              <mat-chip (click)="addColoredPhoto()">
+                <svg-icon
+                  class="create-post__icon"
+                  icon="posts_colored"
+                ></svg-icon>
+                Colored Post
+              </mat-chip>
+              <mat-chip (click)="addFeeling()">
+                <svg-icon class="create-post__icon" icon="feeling"></svg-icon>
+                Feeling/Activity
+              </mat-chip>
+            </div>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

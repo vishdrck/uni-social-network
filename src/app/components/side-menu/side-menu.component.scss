@@ -1,0 +1,33 @@
+@import '../../theme.colors.scss';
+
+.wall {
+  // height: calc(100vh-36px);
+  // width: 100%;
+  // z-index: 0;
+  // position: absolute;
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+
+  &__sidenav {
+    overflow: scroll;
+  }
+
+  &__sidenav-list_item {
+    font-size: 1.0em;
+    font-weight: 700;
+  }
+
+  &__active-menu-item {
+    color: mat-color($app-primary);
+  }
+
+  &__sidenav_size {
+    padding-left: 50px;
+    padding-right: 10px;
+    padding-bottom: 14px;
+    width: 350px;
+  }
+}
+

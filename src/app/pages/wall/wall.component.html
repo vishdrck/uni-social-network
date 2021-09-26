@@ -1,0 +1,47 @@
+<mat-toolbar color="primary" class="" style="padding-top: 10px">
+  <button
+    mat-icon-button
+    *ngIf="!sidenav.opened"
+    (click)="sidenav.toggle()"
+    matTooltip="Toggle Side Panel"
+  >
+    <mat-icon aria-label="menu" style="margin-bottom: 4px">menu</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    *ngIf="sidenav.opened"
+    (click)="sidenav.toggle()"
+    matTooltip="Toggle Side Panel"
+  >
+    <mat-icon aria-label="menu" style="margin-bottom: 4px">menu_open</mat-icon>
+  </button>
+  <div class="toolbar-container">
+    <span><img class="logo" src="../../../assets/logo.svg"/></span>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="wall">
+  <mat-sidenav
+    #sidenav
+    class="wall__sidenav"
+    style="overflow: hidden; border: 0"
+    (click)="screenWidth > 840 ? '' : sidenav.toggle()"
+    [opened]="screenWidth > 840"
+    [mode]="screenWidth > 840 ? 'side' : 'over'"
+  >
+    <app-side-menu></app-side-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content style="overflow: scroll; background-color: white">
+    <div class="container wall__post_container">
+      <div class="row">
+        <div class="col-sm-7">
+          <router-outlet></router-outlet>
+        </div>
+        <div class="col-sm-5">
+          <app-chat></app-chat>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

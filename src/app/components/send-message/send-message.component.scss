@@ -1,0 +1,39 @@
+.send-chat {
+  height: 100px;
+  &__container {
+    background-color: #e8e8e8;
+    height: 500px;
+    max-height: 500px;
+    border-radius: 4px;
+
+  }
+  &__form-field {
+    position: absolute;
+    bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  &__view {
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  &__view-container {
+    margin: 10px;
+  }
+
+  &__msg-avatar-img{
+    height: 40px;
+    width: 40px;
+    border:1.5px solid #000000;
+  }
+
+  &__msg-container {
+    margin: auto 0 auto 10px;
+    border-radius: 25px;
+    background-color: #000000;
+    padding: 10px 15px;
+    position: relative;
+    color: white;
+  }
+}

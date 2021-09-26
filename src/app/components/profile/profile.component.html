@@ -1,0 +1,115 @@
+<div class="container">
+  <mat-card class="profile">
+    <mat-card-header class="profile__cover">
+      <div class="profile__avatar"></div>
+      <div class="profile__message">
+        <button mat-fab color="white" aria-label="Message" matTooltip="Send Message">
+          <svg-icon icon="chat"></svg-icon>
+        </button>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="profile__content">
+      <div class="container-fluid pt-3">
+        <form [formGroup]="editProfileFormGroup">
+          <div class="row pb-3">
+            <div class="col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input type="text" pattern="[A-Za-z]+" matInput placeholder="First Name" formControlName="firstName"
+                       required>
+                <svg-icon matSuffix customSVGCss="display: block" icon="worker"></svg-icon>
+                <mat-hint>John</mat-hint>
+                <mat-error>First Name is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input type="text" pattern="[A-Za-z]+" matInput placeholder="Last Name" formControlName="lastName">
+                <svg-icon matSuffix customSVGCss="display: block" icon="man"></svg-icon>
+                <mat-hint>Doe</mat-hint>
+                <mat-error>Last Name is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" style="margin-right: 2%;"
+                              appearance="outline">
+                <mat-label>Email Address</mat-label>
+                <input type="email" matInput placeholder="Email Address" formControlName="email" required>
+                <svg-icon matSuffix customSVGCss="display: block" icon="email"></svg-icon>
+                <mat-hint>example@abc.com</mat-hint>
+                <mat-error>Email Address is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="outline">
+                <mat-label>Index Number</mat-label>
+                <input type="text" pattern="[A-Za-z]+" matInput placeholder="Index Number" formControlName="indexNumber"
+                       required>
+                <svg-icon matSuffix customSVGCss="display: block" icon="idea"></svg-icon>
+                <mat-hint>AS2018575</mat-hint>
+                <mat-error>Index Number is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="outline" style="margin-right: 2%;">
+                <mat-label>Academic Year</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let academicYear of academicYearList" [value]="academicYear.key">{{academicYear.value}}</mat-option>
+                </mat-select>
+                <svg-icon matSuffix customSVGCss="display: block" icon="university"></svg-icon>
+                <mat-hint>2018/19</mat-hint>
+                <mat-error>Academic Year is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="outline">
+                <mat-label>Combination</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let combination of combinationList" [value]="combination.key">{{combination.value}}</mat-option>
+                </mat-select>
+                <svg-icon matSuffix customSVGCss="display: block" icon="team"></svg-icon>
+                <mat-hint>AS2018575</mat-hint>
+                <mat-error>Combination is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="outline" style="margin-right: 2%;">
+                <mat-label>Faculty</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let faculty of facultiesList" [value]="faculty.key">{{faculty.value}}</mat-option>
+                </mat-select>
+                <svg-icon matSuffix customSVGCss="display: block" icon="university"></svg-icon>
+                <mat-hint>Faculty of Applied Sciences</mat-hint>
+                <mat-error>Faculty is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="outline">
+                <mat-label>Department</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let department of departmentList" [value]="department.key">{{department.value}}</mat-option>
+                </mat-select>
+                <svg-icon matSuffix customSVGCss="display: block" icon="fire-department"></svg-icon>
+                <mat-hint>Department of Computer Science</mat-hint>
+                <mat-error>Index Number is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" style="margin-right: 2%;"
+                              appearance="outline">
+                <mat-label>Username</mat-label>
+                <input type="text" pattern="[A-Za-z]+" matInput placeholder="Username" formControlName="username"
+                       required>
+                <svg-icon matSuffix customSVGCss="display: block" icon="username"></svg-icon>
+                <mat-hint>johndoe</mat-hint>
+                <mat-error>Username is required</mat-error>
+              </mat-form-field>
+              <mat-form-field class="half-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input type="text" [minLength]="6" matInput placeholder="Password" formControlName="username" required>
+                <svg-icon matSuffix customSVGCss="display: block" icon="password"></svg-icon>
+                <mat-hint>123456</mat-hint>
+                <mat-error>Invalid Password Policy. Password should meet minimum 6 length characters.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <div class="container-fluid">
+        <div class="row pb-3">
+          <div class="col-sm-12">
+            <button color="accent" class="w-full" mat-raised-button>Update</button>
+          </div>
+        </div>
+
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

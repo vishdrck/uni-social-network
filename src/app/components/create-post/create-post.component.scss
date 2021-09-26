@@ -1,0 +1,33 @@
+.create-post {
+  margin: 0px 30px;
+
+  &__container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  &__chip_spacer {
+    width: 100%;
+  }
+
+  &__logo {
+    background-image: url('/assets/logo.min.svg');
+    background-repeat: no-repeat;
+    margin: 25px 30px 0 10px;
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  &__icon {
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 767px) {
+  .create-post {
+    &__chip_spacer {
+    margin-top: 8px;
+    width: 100%;
+  }
+  }
+}

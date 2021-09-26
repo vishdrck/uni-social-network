@@ -1,0 +1,72 @@
+@import "../../theme.colors.scss";
+
+.toolbar-container {
+  width: 100%;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.wall {
+  height: calc(100vh-36px);
+  width: 100%;
+  z-index: 0;
+  position: absolute;
+  top: calc(63px);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+
+  &__sidenav {
+    overflow: scroll;
+  }
+
+  &__sidenav-list_item {
+    font-size: 1.4em;
+    font-weight: 400;
+  }
+
+  &__active-menu-item {
+    color: mat-color($app-primary);
+  }
+
+  &__post_container {
+    margin-bottom: 50px;
+  }
+}
+
+.logo {
+  width: 125px;
+}
+
+@media (min-width: 576px) {
+    .toolbar-container {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 768px) {
+    .toolbar-container {
+    max-width: 875px;
+  }
+}
+
+@media (min-width: 992px) {
+    .toolbar-container {
+    max-width: 895px;
+  }
+}
+
+@media (min-width: 1200px) {
+    .toolbar-container {
+    max-width: 1090px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .toolbar-container {
+    max-width: 1475px;
+  }
+}

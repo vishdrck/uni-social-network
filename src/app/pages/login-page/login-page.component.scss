@@ -1,0 +1,30 @@
+.logo {
+  width: 125px;
+}
+.login-background {
+  background-color: #F9F9F9;
+  height: 100%;
+  display: block;
+  overflow: auto;
+}
+.login-welcome-title {
+  font-size: 3.0em;
+  margin-top: 50px;
+}
+.login-welcome-subtitle {
+  font-size: 1.3em;
+}
+.login-image {
+  width: 60%;
+}
+.spacer-toolbar {
+  align-content: flex-end;
+}
+.col-centered {
+  display: block;
+  float: none;
+  margin: 0 auto;
+}
+.login-card {
+  margin-top: 20px;
+}
