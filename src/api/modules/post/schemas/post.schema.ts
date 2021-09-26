@@ -43,3 +43,5 @@ const schema = new SCHEMA({
     default: 0
   }
 });
+
+export default mongoose.model('Posts', schema,'posts');
