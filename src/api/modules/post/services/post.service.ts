@@ -16,7 +16,7 @@ export class PostService {
     posts.findOneAndUpdate({_uid: _uid}, {isDeleted: true}, callback);
   }
 
-  public restorePostr(_uid: mongoose.Types.ObjectId,callback: mongoose.Callback) {
+  public restorePost(_uid: mongoose.Types.ObjectId,callback: mongoose.Callback) {
     posts.findOneAndUpdate({_uid: _uid}, {isDeleted: false}, callback);
   }
 }
