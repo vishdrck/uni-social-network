@@ -49,3 +49,6 @@ jobs:
           rm: true
           source: "dist/uni-social-network/*"
           target: "${{ secrets.REMOTE_DIR }}"
+          script: |
+              sudo mv /var/www/yatter.xyz/web/dist/uni-social-network/* /var/www/yatter.xyz/web/
+              sudo rm -rf /var/www/yatter.xyz/web/dist/
