@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-export interface IFriend {
+export interface IRequest {
   _id?: mongoose.Types.ObjectId;
   _uid: mongoose.Types.ObjectId;
-  _fuid: mongoose.Types.ObjectId;
-  acceptedDate: Date;
+  _fromUid: mongoose.Types.ObjectId;
+  requestDate: Date;
 
 }

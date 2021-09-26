@@ -13,13 +13,13 @@ const schema = new SCHEMA({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users'
   },
-  _fuid: {
+  _fromUid: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users'
   },
-  acceptedDate: {
+  requestedDate: {
     type: Date
   }
 });
 
-export default mongoose.model('Friends', schema,'friends');
+export default mongoose.model('Requests', schema,'requests');
