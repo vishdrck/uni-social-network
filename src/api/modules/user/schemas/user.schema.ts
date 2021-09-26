@@ -8,7 +8,7 @@ const updateNote = {
   updateNote: String
 };
 
-const shema = new SCHEMA({
+const schema = new SCHEMA({
   _uid: {
     type: mongoose.Types.ObjectId,
     required: true
@@ -32,5 +32,11 @@ const shema = new SCHEMA({
   department: {
     type: String,
     required: true
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false
   }
-})
+});
+
+export default mongoose.model('Users', schema,'users');
