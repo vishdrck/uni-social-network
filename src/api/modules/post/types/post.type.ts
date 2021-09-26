@@ -6,7 +6,7 @@ export interface IPost {
   postType: string;
   title: string;
   imagePath?: string;
-  publishedIn: string;
+  publishedIn: Date;
   postColor?: string;
   postContent: string;
   reactions: number;
