@@ -24,17 +24,17 @@ export interface IUser {
 
 export interface IIAMUserRequest {
   firstName: string;
-  lastName: string;
+  lastName?: string;
   email: string;
   username: string;
   password: string;
 }
 
 export interface IIAMUserResponse {
-  status: string;
-  message: string;
-  data: {
-    _id: mongoose.Types.ObjectId;
+  STATUS: string;
+  MESSAGE: string;
+  DATA: {
+    _uid: mongoose.Types.ObjectId;
     firstName: string;
     lastName: string;
     email: string;
