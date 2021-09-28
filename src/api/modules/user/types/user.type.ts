@@ -13,6 +13,11 @@ export interface IProfile {
   username: string;
 }
 
+export interface INewUser {
+  _uid: mongoose.Types.ObjectId;
+  indexNumber: string;
+}
+
 export interface IUser {
   _uid: mongoose.Types.ObjectId;
   indexNumber: string;
@@ -39,7 +44,7 @@ export interface IIAMUserResponse {
     lastName: string;
     email: string;
     username: string;
-    password: string;
+    token: string;
   };
 }
 

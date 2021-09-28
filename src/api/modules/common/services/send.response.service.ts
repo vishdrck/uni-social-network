@@ -1,15 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+import { Response } from 'express';
+import { HTTPCODES } from "../types/http-codes.type";
+
 class SendResponseService {
-    response(http_status, status, msg, data, res) {
+    public response(http_status: HTTPCODES, status: string, msg: string, data: any, res: Response) {
         if (data) {
             res.status(http_status).json({
                 STATUS: status,
                 MESSAGE: msg,
                 DATA: data
             });
-        }
-        else {
+
+        } else {
             res.status(http_status).json({
                 STATUS: status,
                 MESSAGE: msg,
@@ -18,4 +19,5 @@ class SendResponseService {
         }
     }
 }
-exports.default = new SendResponseService().response;
+
+export default new SendResponseService().response;

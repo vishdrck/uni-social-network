@@ -1,9 +1,9 @@
-import {IUser} from "../types/user.type";
+import {INewUser, IUser} from "../types/user.type";
 import users from '../schemas/user.schema';
 import mongoose from "mongoose";
 
 export class UserService {
-  public createUser(userParams: IUser, callback: mongoose.Callback) {
+  public createUser(userParams: INewUser, callback: mongoose.Callback) {
     const user = new users(userParams);
     user.save(callback);
   }
