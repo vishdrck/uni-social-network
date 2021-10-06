@@ -59,5 +59,6 @@ jobs:
           script: |
               sudo mv /var/www/yatter.xyz/web/dist/uni-social-network/* /var/www/yatter.xyz/web/
               sudo rm -rf /var/www/yatter.xyz/web/dist/
+              sudo chown root:root /var/www/yatter.xyz/web/ -R
           
         
