@@ -17,3 +17,16 @@ export interface IAcademicYear {
   key: string;
   value: string;
 }
+
+export interface ILoginRegistrationResponse {
+  STATUS: string;
+  MESSAGE:string;
+  DATA: {
+    _uid: string;
+    firstName: string;
+    indexNumber: string;
+    email: string;
+    username: string;
+    token: string;
+  }
+}

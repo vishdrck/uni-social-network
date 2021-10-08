@@ -90,6 +90,10 @@ class Environment {
     }
     return (siteName + path);
   }
+
+  getIamUrl(prefix: string): string {
+    return `http://localhost:2520/${prefix}`;
+  }
 }
 
 export default new Environment(Environments.LOCAL_WINDOWS,true);

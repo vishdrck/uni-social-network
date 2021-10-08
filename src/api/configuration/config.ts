@@ -6,22 +6,31 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { MongoConnection } from './mongo';
 import { CommonRoutes } from '../routes/common.route';
+import {UserRoutes} from "../routes/user.route";
 
 class App {
   public app: express.Application;
-  private mongo_connection: MongoConnection = new MongoConnection();
-  private common_routes: CommonRoutes = new CommonRoutes();
+  private mongoConnection: MongoConnection = new MongoConnection();
+  private commonRoutes: CommonRoutes = new CommonRoutes();
+  private userRoutes: UserRoutes = new UserRoutes();
 
   // Routes
 
   constructor() {
     this.app = express();
     this.config();
-    this.mongo_connection.connect();
-    this.common_routes.route(this.app);
+    this.mongoConnection.connect();
+    this.commonRoutes.route(this.app);
+    this.userRoutes.route(this.app);
   }
 
   private config(): void {
+
+    //Converts the requests into json format for handling purposes
+    this.app.use(bodyParser.json({ limit: '10mb' }));
+    // support application/x-www-form-urlencoded post data
+    this.app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
     const logDir = path.join(__dirname, '../log');
     fs.existsSync(logDir) || fs.mkdirSync(logDir);
 

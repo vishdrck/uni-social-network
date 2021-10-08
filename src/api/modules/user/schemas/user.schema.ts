@@ -19,19 +19,19 @@ const schema = new SCHEMA({
   },
   academicYear: {
     type: String,
-    required: true
+    required: false
   },
   combination: {
     type: String,
-    required: true,
+    required: false,
   },
   faculty: {
     type: String,
-    required: true
+    required: false
   },
   department: {
     type: String,
-    required: true
+    required: false
   },
   isDeleted: {
     type: Boolean,
