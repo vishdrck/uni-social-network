@@ -30,3 +30,11 @@ export interface ILoginRegistrationResponse {
     token: string;
   }
 }
+
+export interface ItokenResponse {
+  STATUS: string;
+  MESSAGE: string;
+  DATA: {
+    validity: boolean
+  }
+}

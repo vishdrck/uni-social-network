@@ -1,12 +1,13 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {NgxSpinnerService} from "ngx-spinner";
 import constants from "../../services/constants.service";
-import {ILoginRegistrationResponse} from "../../common/common.types";
+import {ILoginRegistrationResponse, ItokenResponse} from "../../common/common.types";
 import {LocalStorage} from "@ngx-pwa/local-storage";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HttpClient} from "@angular/common/http";
+
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +16,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LoginFormComponent implements OnInit, AfterViewInit {
 
- public loginForm = new FormGroup({
+  public loginForm = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     remember: new FormControl('')
@@ -27,26 +28,43 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
     private localstorage: LocalStorage,
     private snackbar: MatSnackBar,
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.spinner.show();
-    if(this.localstorage.getItem('remember') && this.localstorage.getItem('token')) {
+    this.localstorage.getItem('remember').subscribe((remember) => {
+      if (remember === true) {
+        this.localstorage.getItem('token').subscribe((token) => {
+          const url = constants.getURL('validate/token');
+          this.http.post<ItokenResponse>(url, {token: token}).subscribe((response:any) => {
+            console.log(response);
+            if (response && response.STATUS && response.STATUS === 'success') {
+              if (response.DATA && response.DATA.validity === true) {
+                this.spinner.hide();
+                this.router.navigate(['account/feeds']);
+              } else {
+                this.spinner.hide();
+              }
+            } else {
+              this.spinner.hide();
+            }
+          });
+        });
+      } else {
+        this.spinner.hide();
+      }
+    });
 
-    }
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 1000);
-    //this.spinner.hide();
   }
 
   onSubmit() {
-    this.loginForm.controls['remember'].value?this.loginForm.controls['remember'].setValue(true):this.loginForm.controls['remember'].setValue(false);
+    this.loginForm.controls['remember'].value ? this.loginForm.controls['remember'].setValue(true) : this.loginForm.controls['remember'].setValue(false);
     if (this.loginForm.valid) {
+      this.localstorage.clear();
       this.spinner.show();
       const url = constants.getURL('login');
       this.http.post<ILoginRegistrationResponse>(url, {
@@ -55,9 +73,9 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
       }).subscribe((response) => {
         if (response && response.STATUS && response.STATUS === 'success') {
           if (response.DATA && response.DATA.token) {
-            this.localstorage.setItem('token',response.DATA.token).subscribe(()=> {
-              this.localstorage.setItem('_uid',response.DATA._uid).subscribe(()=>{
-                this.localstorage.setItem('remember',this.loginForm.controls['remember'].value).subscribe(()=>{
+            this.localstorage.setItem('token', response.DATA.token).subscribe(() => {
+              this.localstorage.setItem('_uid', response.DATA._uid).subscribe(() => {
+                this.localstorage.setItem('remember', this.loginForm.controls['remember'].value).subscribe(() => {
                   this.spinner.hide();
                   this.router.navigate(['account/feeds']);
                 });
