@@ -4,7 +4,7 @@
       <img src="../../../assets/logo.svg" alt="" class="login-logo" />
     </div>
   </mat-card-title>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <mat-card-content>
       <mat-form-field style="width: 100%;" appearance="standard">
         <mat-label>First Name</mat-label>
@@ -26,7 +26,7 @@
           type="text"
           matInput
           placeholder="University ID Number"
-          formControlName="uniID"
+          formControlName="indexNumber"
           required
         />
         <mat-icon matSuffix>credit_card</mat-icon>
@@ -35,17 +35,30 @@
       <mat-form-field style="width: 100%; " appearance="standard">
         <mat-label>Email</mat-label>
         <input
-          id="username"
-          type="text"
+          id="email"
+          type="email"
           pattern="([A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,64})|([0-9]{10})"
           matInput
           placeholder="Email"
-          formControlName="username"
+          formControlName="email"
           required
         />
         <mat-icon matSuffix>email</mat-icon>
         <mat-error>Valid email (pattern: example@abc.com) is required.</mat-error>
       </mat-form-field>
+      <mat-form-field style="width: 100%; " appearance="standard">
+      <mat-label>Username</mat-label>
+      <input
+        id="username"
+        type="text"
+        matInput
+        placeholder="Username"
+        formControlName="username"
+        required
+      />
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error>Valid username is required.</mat-error>
+    </mat-form-field>
       <mat-form-field style="width: 100%; " appearance="standard">
         <mat-label>Password</mat-label>
         <input

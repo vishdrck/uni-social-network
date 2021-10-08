@@ -91,8 +91,8 @@ class Environment {
     return (siteName + path);
   }
 
-  getIamUrl(): string {
-    return 'http://localhost:2520/';
+  getIamUrl(prefix: string): string {
+    return `http://localhost:2520/${prefix}`;
   }
 }
 

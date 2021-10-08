@@ -9,5 +9,9 @@ export class UserRoutes {
     app.post('/register', (req: Request, res: Response) => {
       this.userController.register(req,res);
     });
+
+    app.post('/login', (req: Request, res: Response) => {
+      this.userController.login(req,res);
+    });
   }
 }

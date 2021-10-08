@@ -54,10 +54,18 @@ export interface IIAMLoginRequest {
 }
 
 export interface IIAMLoginResponse {
-  status: string;
-  message: string;
-  data: {
+  STATUS: string;
+  MESSAGE: string;
+  DATA: {
     token: string
+  }
+}
+
+export interface ItokenResponse {
+  STATUS: string;
+  MESSAGE: string;
+  DATA: {
+    validity: boolean
   }
 }
 

@@ -2,6 +2,11 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import constants from "../../services/constants.service";
+import {ILoginRegistrationResponse} from "../../common/common.types";
+import {LocalStorage} from "@ngx-pwa/local-storage";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-login-form',
@@ -11,18 +16,24 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class LoginFormComponent implements OnInit, AfterViewInit {
 
  public loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     remember: new FormControl('')
   });
 
   constructor(
     public spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private localstorage: LocalStorage,
+    private snackbar: MatSnackBar,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
     this.spinner.show();
+    if(this.localstorage.getItem('remember') && this.localstorage.getItem('token')) {
+
+    }
   }
 
   ngAfterViewInit(): void {
@@ -34,7 +45,36 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    this.router.navigate(['/account/feeds'], {});
+    this.loginForm.controls['remember'].value?this.loginForm.controls['remember'].setValue(true):this.loginForm.controls['remember'].setValue(false);
+    if (this.loginForm.valid) {
+      this.spinner.show();
+      const url = constants.getURL('login');
+      this.http.post<ILoginRegistrationResponse>(url, {
+        email: this.loginForm.controls['email'].value,
+        password: this.loginForm.controls['password'].value
+      }).subscribe((response) => {
+        if (response && response.STATUS && response.STATUS === 'success') {
+          if (response.DATA && response.DATA.token) {
+            this.localstorage.setItem('token',response.DATA.token).subscribe(()=> {
+              this.localstorage.setItem('_uid',response.DATA._uid).subscribe(()=>{
+                this.localstorage.setItem('remember',this.loginForm.controls['remember'].value).subscribe(()=>{
+                  this.spinner.hide();
+                  this.router.navigate(['account/feeds']);
+                });
+              });
+            });
+          } else {
+            this.spinner.hide();
+            this.snackbar.open('User not found!');
+          }
+        } else {
+          this.spinner.hide();
+          this.snackbar.open('Email and password are not found', 'close', {duration: 3000});
+        }
+      });
+    } else {
+      this.snackbar.open('Valid data required for login to your account', 'close', {duration: 3000});
+    }
   }
 
 }

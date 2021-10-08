@@ -19,4 +19,8 @@ export class UserService {
   public restoreUser(_uid: mongoose.Types.ObjectId,callback: mongoose.Callback) {
     users.findOneAndUpdate({_uid: _uid}, {isDeleted: false}, callback);
   }
+
+  public filterUsers(filters: any, callback: mongoose.Callback) {
+    users.find(filters, callback);
+  }
 }
