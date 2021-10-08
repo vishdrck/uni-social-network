@@ -31,6 +31,7 @@ export class UserController {
               internalErrorResponseService(error, res);
             } else {
               if (dataUser && dataUser.length && dataUser.length === 1) {
+
                 sendResponseService(HTTPCODES.SUCCESS, 'success', 'Login Successfully', {
                   _uid: response.data.DATA._uid,
                   firstName: response.data.DATA.firstName,
@@ -124,13 +125,8 @@ export class UserController {
       ).then(response => {
         if (response.data && response.data.STATUS && response.data.STATUS === 'success') {
           if (response.data.DATA) {
-            sendResponseService(HTTPCODES.SUCCESS, 'success', 'Token validated successfully', {
-                STATUS: 'success',
-                MESSAGE: 'Token is validated',
-                DATA: {
-                  validity: response.data.DATA.validity
-                }
-              },
+            sendResponseService(HTTPCODES.SUCCESS, 'success', 'Token validated successfully',
+              {validity: response.data.DATA.validity},
               res);
           } else {
             internalErrorResponseService({error: 'IAM Error'}, res);
