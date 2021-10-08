@@ -88,7 +88,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-              cd /var/www/yatter.xyz/api/ && sudp npm i
+              sudo mv /var/www/yatter.xyz/api/src/api/* /var/www/yatter.xyz/api/
+              cd /var/www/yatter.xyz/api/ && npm i
               tsc && cd dist/ && forever start server.js
           
         
