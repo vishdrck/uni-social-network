@@ -80,13 +80,13 @@ class Environment {
   getUrl(path: string = ''): string {
     let siteName = 'http://localhost:4200/';
     if (this.environment === Environments.DEV_SERVER) {
-      siteName = 'https://dev.yatter.xyz/';
+      siteName = 'https://www.dev.yaatter.xyz/';
     }
     if (this.environment === Environments.QA_SERVER) {
-      siteName = 'https://qa.yatter.xyz/';
+      siteName = 'https://www.qa.yaatter.xyz/';
     }
     if (this.environment === Environments.PROD_SERVER) {
-      siteName = 'https://yatter.xyz/';
+      siteName = 'https://www.yaatter.xyz/';
     }
     return (siteName + path);
   }
@@ -96,4 +96,4 @@ class Environment {
   }
 }
 
-export default new Environment(Environments.LOCAL_WINDOWS,true);
+export default new Environment(Environments.PROD_SERVER,false);
