@@ -7,16 +7,20 @@ enum Environments {
 class ConstantsService {
   private readonly env: Environments;
   private readonly port = 2521;
-  private readonly host = 'https://www.yaatter.xyz/api/';
+  private readonly host = 'https://www.yaatter.xyz/';
   constructor(env: Environments) {
     this.env = env;
   }
   public getAPIUrl(): string {
     let url = `http://localhost:${this.port}/`;
     if(this.env === Environments.PROD_SERVER) {
-      url = this.host;
+        url = `${this.host}api/`;
     }
     return url;
+  }
+
+  public getWebUrl(endPoint: string | null = null): string {
+    return this.host;
   }
 
   public getURL(endpoint: string | null = null): string {
@@ -28,4 +32,4 @@ class ConstantsService {
   }
 }
 
-export default new ConstantsService(Environments.PROD_SERVER);
+export default new ConstantsService(Environments.LOCAL_WINDOWS);

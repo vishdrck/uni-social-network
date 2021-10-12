@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 export interface IProfile {
-  _id: mongoose.Types.ObjectId;
+  _uid: mongoose.Types.ObjectId;
   firstName: string;
-  lastName: string;
+  lastName?: string;
   email: string;
   indexNumber: string;
-  academicYear: string;
-  combination: string;
-  faculty: string;
-  department: string;
+  academicYear?: string;
+  combination?: string;
+  faculty?: string;
+  department?: string;
   username: string;
 }
 
@@ -21,10 +21,18 @@ export interface INewUser {
 export interface IUser {
   _uid: mongoose.Types.ObjectId;
   indexNumber: string;
-  academicYear: string;
-  combination: string;
-  faculty: string;
-  department: string;
+  academicYear?: string;
+  combination?: string;
+  faculty?: string;
+  department?: string;
+}
+
+export interface IIAMUser {
+  _uid: mongoose.Types.ObjectId;
+  firstName: string;
+  lastName?: string;
+  email: string;
+  username: string;
 }
 
 export interface IIAMUserRequest {
@@ -41,10 +49,22 @@ export interface IIAMUserResponse {
   DATA: {
     _uid: mongoose.Types.ObjectId;
     firstName: string;
-    lastName: string;
+    lastName?: string;
     email: string;
     username: string;
     token: string;
+  };
+}
+
+export interface IIAMUserProfileResponse {
+  STATUS: string;
+  MESSAGE: string;
+  DATA: {
+    _uid: mongoose.Types.ObjectId;
+    firstName: string;
+    lastName?: string;
+    email: string;
+    username: string;
   };
 }
 

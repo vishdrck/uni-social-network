@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { postTypes } from 'src/app/common/post.types';
+import {Component, Input, OnInit} from '@angular/core';
+import {postTypes} from 'src/app/common/post.types';
 
 @Component({
   selector: 'yatter-post',
@@ -12,10 +12,17 @@ export class PostComponent implements OnInit {
   @Input() imagePath = '';
   @Input() postType = postTypes.STANDARD_PHOTO;
   @Input() noOfComments = '0';
+  @Input() postContent = '';
+  @Input() postColor = '';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  getClass() {
+    return this.postColor;
   }
 
 }

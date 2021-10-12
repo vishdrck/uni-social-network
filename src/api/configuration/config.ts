@@ -7,12 +7,14 @@ import * as path from 'path';
 import { MongoConnection } from './mongo';
 import { CommonRoutes } from '../routes/common.route';
 import {UserRoutes} from "../routes/user.route";
+import {PostRoutes} from "../routes/post.route";
 
 class App {
   public app: express.Application;
   private mongoConnection: MongoConnection = new MongoConnection();
   private commonRoutes: CommonRoutes = new CommonRoutes();
   private userRoutes: UserRoutes = new UserRoutes();
+  private postRoutes: PostRoutes = new PostRoutes();
 
   // Routes
 
@@ -22,6 +24,7 @@ class App {
     this.mongoConnection.connect();
     this.commonRoutes.route(this.app);
     this.userRoutes.route(this.app);
+    this.postRoutes.route(this.app);
   }
 
   private config(): void {

@@ -9,6 +9,9 @@
     <mat-card-subtitle>{{ subTitle }}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="{{ imagePath }}" />
+  <div class="post__colored-post" [ngClass]="getClass()" *ngIf="postType=='colored_photo'">
+
+  </div>
   <mat-card-content> </mat-card-content>
   <mat-card-actions>
     <div style="text-align: left;position: absolute;margin: 0 10px;">

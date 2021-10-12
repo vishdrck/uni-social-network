@@ -1,6 +1,10 @@
-import { Component, Inject, OnInit } from "@angular/core";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import {Component, Inject, OnInit} from "@angular/core";
+import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FormControl} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {HttpClient} from "@angular/common/http";
+import {LoggedUserDataStore} from "../../data/logged-user.data-store";
+import constants from '../../services/constants.service';
 
 @Component({
   selector: 'app-dialog-add-a-post-dialog',
@@ -11,7 +15,10 @@ export class DialogAddAPostComponent implements OnInit {
   files: File[] = [];
   className: string;
   feelingControl = new FormControl(null);
+  whatsyourmindControl = new FormControl(null);
+  coloredPostTextControl = new FormControl(null);
 
+  private loggedUserDataStore: LoggedUserDataStore = LoggedUserDataStore.getLoggedUserDateStore();
 
   feelingTypes: iFeeling[] = [
     {key: 'happy', value: 'Happy'},
@@ -30,7 +37,12 @@ export class DialogAddAPostComponent implements OnInit {
     {key: 'confounded', value: 'Confounded'}
   ]
 
-  constructor(public dialogRef: MatDialogRef<DialogAddAPostComponent>, @Inject(MAT_DIALOG_DATA) public postType: string) {
+  constructor(
+    public dialogRef: MatDialogRef<DialogAddAPostComponent>,
+    @Inject(MAT_DIALOG_DATA) public postType: string,
+    public snackbar: MatSnackBar,
+    private http: HttpClient
+  ) {
     this.className = '';
   }
 
@@ -59,6 +71,31 @@ export class DialogAddAPostComponent implements OnInit {
   onSelected(feelingType: string) {
     this.feelingControl.setValue(feelingType);
   }
+
+  onPublished() {
+    if (this.postType === 'standard') {
+
+    }
+    if (this.postType === 'coloredPost') {
+      if (this.coloredPostTextControl.value && this.whatsyourmindControl.value) {
+        if (this.loggedUserDataStore.headers) {
+          const url = constants.getURL('post/create');
+          this.http.post(url,{
+            postType: this.postType,
+            className: this.className,
+            postContent: this.coloredPostTextControl.value,
+            postTitle: this.whatsyourmindControl.value
+          },this.loggedUserDataStore.headers).subscribe( response => {
+            console.log(response);
+          });
+        }
+
+      } else {
+        this.snackbar.open('Please enter your thoughts', 'close', {duration: 3000});
+      }
+    }
+  }
+
 
 }
 
