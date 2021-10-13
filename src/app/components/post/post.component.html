@@ -9,6 +9,7 @@
     <mat-card-subtitle
       *ngIf="postType=='checkin'">{{ postType == 'checkin' ? subTitle + ' @ ' + postContent : subTitle }}</mat-card-subtitle>
     <mat-card-subtitle *ngIf="postType=='feeling'">{{subTitle }}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="postType=='standard'">{{subTitle }}</mat-card-subtitle>
   </mat-card-header>
   <img *ngIf="imagePath" mat-card-image src="{{ imagePath }}"/>
 

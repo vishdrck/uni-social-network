@@ -5,12 +5,24 @@
              postColor="{{post.postColor}}"
              postContent="{{post.postContent}}"
              imagePath = "{{post.imagePath}}"
-></yatter-post>
+>
+
+</yatter-post>
 <div *ngIf="enableSpinner">
   <div class="row">
     <div class="col-sm-12">
       <div class="text-center">
         <mat-spinner style="margin: 20px auto;" [diameter]="40"></mat-spinner>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="enableNoResults">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="text-center">
+        <img src="assets/not-found.png" style="width: 60%;">
       </div>
     </div>
   </div>

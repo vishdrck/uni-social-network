@@ -5,6 +5,7 @@ import {LoggedUserDataStore} from '../../data/logged-user.data-store';
 import {posix} from "path";
 import {Router} from "@angular/router";
 import {IDetailedPost, IDetailedPostResponse} from "../../common/post.types";
+import {LocalStorage} from "@ngx-pwa/local-storage";
 
 @Component({
   selector: 'app-posts',
@@ -15,26 +16,30 @@ export class PostsComponent implements OnInit {
 
   loggedUserDataStore: LoggedUserDataStore = LoggedUserDataStore.getLoggedUserDateStore();
   enableSpinner = true;
+  enableNoResults = false;
   allPosts: IDetailedPost[] = [];
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router: Router,private localstorage: LocalStorage) { }
 
   ngOnInit(): void {
     this.getAllPosts();
   }
 
   private getAllPosts() {
+    this.enableSpinner = true;
     const url = constants.getURL('post');
-    if (this.loggedUserDataStore.headers) {
-      this.http.get<IDetailedPostResponse>(url, this.loggedUserDataStore.headers).subscribe((dataPosts:any)=>{
-        console.log(dataPosts);
-        if (dataPosts.STATUS && dataPosts.STATUS === 'success') {
-          this.allPosts = dataPosts.DATA;
-        }
-      });
-    } else {
-      this.router.navigate(['/account/login']);
-    }
+    this.localstorage.getItem('token').subscribe((token) => {
+      if (token) {
+        this.http.get<IDetailedPostResponse>(url, {headers: {Authorization: `Bearer ${token}`}}).subscribe((dataPosts: any) => {
+          if (dataPosts.STATUS && dataPosts.STATUS === 'success' && dataPosts.DATA.length && dataPosts.DATA.length > 0) {
+            this.allPosts = dataPosts.DATA;
+            this.enableSpinner = false;
+          }
+        });
+      } else {
+        this.router.navigate(['/account/login']);
+      }
+    });
   }
 
 }
