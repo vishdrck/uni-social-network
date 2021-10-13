@@ -20,12 +20,22 @@ export class PostController {
   public createPost(req: Request, res: Response) {
     this.authService.validateLogin(req, res, (dataLoggedUser: IIAMUser) => {
       if (dataLoggedUser) {
-        if (req.body && req.body.postType && req.body.postContent && req.body.postTitle) {
+        if (req.body && req.body.postType && req.body.postTitle) {
+          let imagePath= '';
+          let postContent = '-';
+          if(req.file) {
+            imagePath = req.file.filename;
+          }
+          if(req.body.postContent) {
+            postContent = req.body.postContent;
+          }
+
           const newPost: IPost = {
             _uid: dataLoggedUser._uid,
             postColor: req.body.className,
-            postContent: req.body.postContent,
+            postContent: postContent,
             title: req.body.postTitle,
+            imagePath: imagePath,
             publishedIn: new Date(Date.now()),
             postType: req.body.postType
           };
@@ -84,7 +94,7 @@ export class PostController {
                         postType: post.postType ? post.postType : '',
                         publishedIn: post.publishedIn,
                         title: post.title ? post.title : '',
-                        imagePath: post.imagePath ? post.imagePath : '',
+                        imagePath: post.imagePath ? 'uploads/' +  post.imagePath : '',
                         reactions: post.reactions
                       } as IDetailedPost;
                     }
@@ -107,4 +117,5 @@ export class PostController {
       }
     });
   }
+
 }

@@ -6,10 +6,12 @@
       style="background-image: url('/assets/uploads/profile.jpg')"
     ></div>
     <mat-card-title>{{ title }}</mat-card-title>
-    <mat-card-subtitle *ngIf="postType=='checkin'">{{ postType=='checkin'? subTitle + ' @ '+ postContent: subTitle }}</mat-card-subtitle>
-    <mat-card-subtitle *ngIf="postType=='feeling'">{{ postType=='feeling'? subTitle + ' @ '+ postContent: subTitle }}</mat-card-subtitle>
+    <mat-card-subtitle
+      *ngIf="postType=='checkin'">{{ postType == 'checkin' ? subTitle + ' @ ' + postContent : subTitle }}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="postType=='feeling'">{{subTitle }}</mat-card-subtitle>
   </mat-card-header>
-  <img *ngIf="imagePath" mat-card-image src="{{ imagePath }}" />
+  <img *ngIf="imagePath" mat-card-image src="{{ imagePath }}"/>
+
 
   <mat-card-content class="post__card-content">
     <div class="post__colored-post colored-post" [ngClass]="getClass()" *ngIf="postType==='coloredPost'">
@@ -18,6 +20,13 @@
       </div>
     </div>
 
+    <div class="post__colored-post colored-post" [ngClass]="getClass()" *ngIf="postType==='feeling'">
+      <div class="colored-post__text-wrapper">
+        <span class="colored-post__text-area" style="color: black">I'm Feeling <svg-icon class=""
+                                                        style="display: inline-block;margin-left: 5px;margin-right: 10px;"
+                                                        icon="{{postContent}}"></svg-icon> {{postContent | titlecase}}</span>
+      </div>
+    </div>
 
   </mat-card-content>
   <mat-card-actions>

@@ -149,6 +149,33 @@ export class DialogAddAPostComponent implements OnInit {
         this.snackbar.open('Please enter your thoughts', 'close', {duration: 3000});
       }
     }
+
+    if (this.postType === 'standard') {
+      if (this.files.length > 0 && this.whatsyourmindControl.value) {
+        if (this.loggedUserDataStore.headers) {
+          const url = constants.getURL('post/create');
+
+          const formData = new FormData();
+          formData.append('file', this.files[0]);
+          formData.append('postType', this.postType);
+          formData.append('postContent', '');
+          formData.append('postTitle', this.whatsyourmindControl.value);
+
+          this.http.post(url,formData,this.loggedUserDataStore.headers).subscribe( (response:any) => {
+            if(response.STATUS && response.STATUS === 'success') {
+              this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
+              window.location.reload();
+              // this.dialogRef.close();
+            } else {
+              this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
+            }
+          });
+        }
+
+      } else {
+        this.snackbar.open('Please enter your thoughts', 'close', {duration: 3000});
+      }
+    }
   }
 
 
