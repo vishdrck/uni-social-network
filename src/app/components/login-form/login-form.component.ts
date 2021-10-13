@@ -6,7 +6,8 @@ import constants from "../../services/constants.service";
 import {ILoginRegistrationResponse, ItokenResponse} from "../../common/common.types";
 import {LocalStorage} from "@ngx-pwa/local-storage";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {LoggedUserDataStore} from '../../data/logged-user.data-store';
 
 
 @Component({
@@ -15,6 +16,8 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit, AfterViewInit {
+
+  loggedUserData: LoggedUserDataStore = LoggedUserDataStore.getLoggedUserDateStore();
 
   public loginForm = new FormGroup({
     email: new FormControl('', [Validators.required]),
@@ -42,6 +45,11 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
             if (response && response.STATUS && response.STATUS === 'success') {
               if (response.DATA && response.DATA.validity === true) {
                 this.spinner.hide();
+                this.loggedUserData.headers = {
+                  headers: {
+                    Authorization: `Bearer ${token}`
+                  }
+                };
                 this.router.navigate(['account/feeds']);
               } else {
                 this.spinner.hide();
@@ -76,6 +84,11 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
             this.localstorage.setItem('token', response.DATA.token).subscribe(() => {
               this.localstorage.setItem('_uid', response.DATA._uid).subscribe(() => {
                 this.localstorage.setItem('remember', this.loginForm.controls['remember'].value).subscribe(() => {
+                  this.loggedUserData.headers = {
+                    headers: {
+                      Authorization: `Bearer ${response.DATA.token}`
+                    }
+                  };
                   this.spinner.hide();
                   this.router.navigate(['account/feeds']);
                 });
@@ -83,7 +96,7 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
             });
           } else {
             this.spinner.hide();
-            this.snackbar.open('User not found!');
+            this.snackbar.open('User not found!','close', {duration: 3000});
           }
         } else {
           this.spinner.hide();

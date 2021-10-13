@@ -94,6 +94,20 @@ class Environment {
   getIamUrl(prefix: string): string {
     return `http://localhost:2520/${prefix}`;
   }
+
+  getImagesStoragePath() {
+    let path = 'D:/USJ/SOC/uni-social-network/src/api/dist/uploads/';
+    if (this.environment === Environments.DEV_SERVER) {
+      path = '/var/www/dev.yatter.xyz/web/uploads';
+    }
+    if (this.environment === Environments.QA_SERVER) {
+      path = '/var/www/qa.yatter.xyz/web/uploads';
+    }
+    if (this.environment === Environments.PROD_SERVER) {
+      path = '/var/www/yatter.xyz/web/uploads';
+    }
+    return path;
+  }
 }
 
-export default new Environment(Environments.PROD_SERVER,false);
+export default new Environment(Environments.LOCAL_WINDOWS,true);

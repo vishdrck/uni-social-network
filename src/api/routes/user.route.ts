@@ -1,8 +1,11 @@
 import {Application,Request,Response} from "express";
 import {UserController} from "../controllers/user.controller";
+import {PostController} from "../controllers/post.controller";
+import {AuthController} from "../controllers/auth.controller";
 
 export class UserRoutes {
   private userController: UserController = new UserController();
+  private authController: AuthController = new AuthController();
 
   public route(app: Application) {
 
@@ -15,7 +18,11 @@ export class UserRoutes {
     });
 
     app.post('/validate/token',(req: Request, res: Response)=> {
-      this.userController.validateToken(req,res);
+      this.authController.validateToken(req,res);
+    });
+
+    app.get('/profile',(req: Request,res: Response)=> {
+      this.userController.profile(req,res);
     });
   }
 }

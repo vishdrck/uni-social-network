@@ -4,14 +4,24 @@ import {Request, Response} from "express";
 import insufficientDataResponseService from '../modules/common/services/insufficient-data.response.service';
 import internalErrorResponseService from '../modules/common/services/internalError.response.service';
 import sendResponseService from '../modules/common/services/send.response.service';
-import {IIAMUserResponse, INewUser, ItokenResponse, IUser} from "../modules/user/types/user.type";
+import {
+  IIAMUser,
+  IIAMUserProfileResponse,
+  IIAMUserResponse,
+  INewUser, IProfile,
+  ItokenResponse,
+  IUser
+} from "../modules/user/types/user.type";
 import axios from 'axios';
 import env from '../env';
 import {HTTPCODES} from "../modules/common/types/http-codes.type";
 import queryBuilderHelper from "../helpers/query-builder.helper";
+import {AuthController} from "./auth.controller";
+
 
 export class UserController {
   private userService: UserService = new UserService();
+  private authService: AuthController = new AuthController();
 
   public login(req: Request, res: Response) {
     logger.info('function login() started execution');
@@ -114,33 +124,36 @@ export class UserController {
     logger.info('function register ended execution');
   }
 
-  public validateToken(req: Request, res: Response) {
-    logger.info('function validateToken started execution');
-
-    if (req && req.body && req.body.token) {
-      const url = env.getIamUrl('validate/token');
-      axios.post<ItokenResponse>(url, {
-          token: req.body.token
-        }
-      ).then(response => {
-        if (response.data && response.data.STATUS && response.data.STATUS === 'success') {
-          if (response.data.DATA) {
-            sendResponseService(HTTPCODES.SUCCESS, 'success', 'Token validated successfully',
-              {validity: response.data.DATA.validity},
-              res);
+  public profile(req: Request, res: Response) {
+    this.authService.validateLogin(req, res, (dataLoggedUser: IIAMUser) => {
+      console.log(dataLoggedUser);
+      if (dataLoggedUser) {
+        this.userService.filterUsers({_uid: dataLoggedUser._uid}, (error: any, dataUser: IUser) => {
+          if (error) {
+            internalErrorResponseService(error, res);
           } else {
-            internalErrorResponseService({error: 'IAM Error'}, res);
+            if (dataUser) {
+              sendResponseService(HTTPCODES.SUCCESS, 'success', 'User found', {
+                _uid: dataLoggedUser._uid,
+                email: dataLoggedUser.email,
+                firstName: dataLoggedUser.firstName,
+                lastName: dataLoggedUser.firstName ? dataLoggedUser.lastName : '',
+                username: dataLoggedUser.username,
+                indexNumber: dataUser.indexNumber ? dataUser.indexNumber : '',
+                academicYear: dataUser.academicYear ? dataUser.academicYear : '',
+                combination: dataUser.combination ? dataUser.combination : '',
+                department: dataUser.department ? dataUser.department : '',
+                faculty: dataUser.faculty ? dataUser.faculty : ''
+              } as IProfile, res);
+            } else {
+              sendResponseService(HTTPCODES.SUCCESS, 'failed', 'User not found', {}, res);
+            }
           }
-        } else {
-          sendResponseService(HTTPCODES.SUCCESS, 'failure', response.data.MESSAGE, {}, res);
-        }
-      }).catch(reject => {
-        internalErrorResponseService(reject, res);
-      });
-    } else {
-      insufficientDataResponseService(res);
-    }
+        });
 
-    logger.info('function validateToken ended execution');
+      } else {
+        sendResponseService(HTTPCODES.ERR_UNAUTHORIZED, 'failed', 'User not found', {}, res);
+      }
+    });
   }
 }

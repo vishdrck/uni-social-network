@@ -38,3 +38,33 @@ export interface ItokenResponse {
     validity: boolean
   }
 }
+
+export interface IProfileResponse {
+  STATUS: string;
+  MESSAGE: string;
+  DATA: {
+    _uid: any;
+    firstName: string;
+    lastName?: string;
+    email: string;
+    indexNumber: string;
+    academicYear?: string;
+    combination?: string;
+    faculty?: string;
+    department?: string;
+    username: string;
+  }
+}
+
+export interface IProfile {
+  _uid: any;
+  firstName: string;
+  lastName?: string;
+  email: string;
+  indexNumber: string;
+  academicYear?: string;
+  combination?: string;
+  faculty?: string;
+  department?: string;
+  username: string;
+}

@@ -4,3 +4,24 @@ export enum postTypes{
   CHECKIN = 'checkin',
   FEELING ='feeling'
 }
+
+export interface IDetailedPost {
+  _id: any;
+  _uid: any;
+  postType: string;
+  title: string;
+  imagePath?: string;
+  publishedIn: Date;
+  postColor?: string;
+  postContent: string;
+  reactions?: number;
+  firstName: string;
+  lastName?: string;
+  username: string;
+}
+
+export interface IDetailedPostResponse {
+  STATUS: string;
+  MESSAGE: string;
+  DATA: [IDetailedPost]
+}

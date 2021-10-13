@@ -1,1 +1,17 @@
-<yatter-post title="Vishwajith Weerasinghe" subTitle="feeling awesome" imagePath="/assets/uploads/profile.jpg"></yatter-post>
+<yatter-post *ngFor="let post of allPosts"
+             title="{{post.firstName + ' ' + post.lastName | titlecase}}"
+             subTitle="{{post.title}}"
+             postType="{{post.postType}}"
+             postColor="{{post.postColor}}"
+             postContent="{{post.postContent}}"
+             imagePath = "{{post.imagePath}}"
+></yatter-post>
+<div *ngIf="enableSpinner">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="text-center">
+        <mat-spinner style="margin: 20px auto;" [diameter]="40"></mat-spinner>
+      </div>
+    </div>
+  </div>
+</div>
