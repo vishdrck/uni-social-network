@@ -10,7 +10,7 @@ export class PostComponent implements OnInit {
   @Input() title = '';
   @Input() subTitle = '';
   @Input() imagePath = '';
-  @Input() postType = postTypes.STANDARD_PHOTO;
+  @Input() postType = 'standard_photo';
   @Input() noOfComments = '0';
   @Input() postContent = '';
   @Input() postColor = '';
@@ -23,6 +23,13 @@ export class PostComponent implements OnInit {
 
   getClass() {
     return this.postColor;
+  }
+
+  getSubTitle() {
+    if(this.postType === 'checkin') {
+      this.subTitle += ' @ ' + this.postContent;
+    }
+    return this.subTitle;
   }
 
 }

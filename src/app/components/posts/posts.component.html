@@ -1,6 +1,10 @@
-
-<yatter-post *ngFor="let post of allPosts" title="{{post.firstName}}" subTitle="{{post.title}}"
-             imagePath="/assets/uploads/profile.jpg"></yatter-post>
+<yatter-post *ngFor="let post of allPosts"
+             title="{{post.firstName + ' ' + post.lastName | titlecase}}"
+             subTitle="{{post.title}}"
+             postType="{{post.postType}}"
+             postColor="{{post.postColor}}"
+             postContent="{{post.postContent}}"
+></yatter-post>
 <div *ngIf="enableSpinner">
   <div class="row">
     <div class="col-sm-12">

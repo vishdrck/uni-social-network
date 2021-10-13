@@ -6,13 +6,20 @@
       style="background-image: url('/assets/uploads/profile.jpg')"
     ></div>
     <mat-card-title>{{ title }}</mat-card-title>
-    <mat-card-subtitle>{{ subTitle }}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="postType=='checkin'">{{ postType=='checkin'? subTitle + ' @ '+ postContent: subTitle }}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="postType=='feeling'">{{ postType=='feeling'? subTitle + ' @ '+ postContent: subTitle }}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="{{ imagePath }}" />
-  <div class="post__colored-post" [ngClass]="getClass()" *ngIf="postType=='colored_photo'">
+  <img *ngIf="imagePath" mat-card-image src="{{ imagePath }}" />
 
-  </div>
-  <mat-card-content> </mat-card-content>
+  <mat-card-content class="post__card-content">
+    <div class="post__colored-post colored-post" [ngClass]="getClass()" *ngIf="postType==='coloredPost'">
+      <div class="colored-post__text-wrapper">
+        <span class="colored-post__text-area">{{postContent}}</span>
+      </div>
+    </div>
+
+
+  </mat-card-content>
   <mat-card-actions>
     <div style="text-align: left;position: absolute;margin: 0 10px;">
       <a href="#" class="float-right" style="text-decoration: none;">{{ noOfComments }} Likes</a>

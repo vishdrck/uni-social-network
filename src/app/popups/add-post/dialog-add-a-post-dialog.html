@@ -93,7 +93,7 @@
     <div class="row" *ngIf="postType=='checkin'">
       <div class="text-area-container">
         <mat-form-field appearance="outline" style="width: 100%">
-          <input matInput placeholder="Where are you?"/>
+          <input [formControl]="checkin" matInput placeholder="Where are you?"/>
         </mat-form-field>
       </div>
     </div>
