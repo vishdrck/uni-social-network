@@ -1,0 +1,101 @@
+.text-area-container {
+  // border: 1px;
+  // border-color: #828282;
+  // border-style: solid;
+  // border-radius: 5px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 5px;
+}
+
+.colored-post {
+  &__container {
+    border: 1px;
+    border-color: #828282;
+    border-style: solid;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    height: 300px;
+  }
+  &__text-wrapper {
+    height: 300px;
+    display: flex;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  &__text-area {
+    overflow: hidden;
+    overflow-wrap: break-word;
+    color: rgb(255, 255, 255);
+    height: 62px;
+    min-height: 60px;
+    background: 0 0;
+    direction: ltr;
+    resize: none;
+    outline: 0;
+    width: 100%;
+    margin-top: 5px;
+    padding: 0;
+    font-size: 15px;
+    line-height: 24px;
+    height: 24px;
+    border: 0 none;
+    text-align: center;
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 600;
+    margin: auto;
+  }
+
+  &__pattern-item {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    padding: 0;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background-size: cover;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__pattern-item-red {
+    background-image: linear-gradient(45deg, #ff003d, #ff003d);
+  }
+  &__pattern-item-cyan {
+    background-image: linear-gradient(45deg, #e43adb, #e43adb);
+  }
+  &__pattern-item-purple {
+    background-image: linear-gradient(45deg, #4c40ff, #4c40ff);
+  }
+  &__pattern-item-blue {
+    background-image: linear-gradient(45deg, #0897eb, #0897eb);
+  }
+  &__pattern-item-green {
+    background-image: linear-gradient(45deg, #194d01, #194d01);
+  }
+  &__pattern-item-yellow {
+    background-image: linear-gradient(45deg, #ffa600, #ffa600);
+  }
+
+  &__pattern-item-purple-black {
+    background-image: linear-gradient(45deg, #5f0afd, #03031c);
+  }
+  &__pattern-item-pink-black {
+    background-image: linear-gradient(45deg, #ff00ff, #03031c);
+  }
+  &__pattern-item-red-black {
+    background-image: linear-gradient(45deg, #e91919, #03031c);
+  }
+  &__pattern-item-blue-black {
+    background-image: linear-gradient(45deg, #0018f0, #03031c);
+  }
+  &__pattern-item-orange-black {
+    background-image: linear-gradient(45deg, #ff9100, #03031c);
+  }
+}
+::ng-deep #postContent .mat-form-field-underline {
+  display: none;
+}

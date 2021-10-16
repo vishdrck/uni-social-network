@@ -1,0 +1,25 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-atom"
+             [fullScreen]="false"></ngx-spinner>
+<h2 mat-dialog-title>Upload an image</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container" style="width: 100%">
+    <div class="row">
+    </div>
+    <div class="row">
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drag and drop an image</ngx-dropzone-label>
+        <ngx-dropzone-preview
+          *ngFor="let f of files"
+          [removable]="true"
+          (removed)="onRemove(f)"
+        >
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-button (click)="onUpdated()">Update</button>
+</mat-dialog-actions>
