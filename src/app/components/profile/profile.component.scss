@@ -2,7 +2,6 @@
   margin-top: 20px;
 
   &__avatar {
-    background-image: url('/assets/uploads/profile.jpg');
     height: 150px;
     width: 150px;
     -webkit-border-radius: 50%;
@@ -22,7 +21,6 @@
   &__cover {
     height: 300px;
     margin: -16px !important;
-    background-image: url('/assets/uploads/cover.jpg');
     background-size: cover;
     position: relative;
   }
@@ -36,6 +34,11 @@
     bottom: 0;
     right: 0;
     margin: 10px 16px;
+  }
+
+  &__menu {
+    position: absolute;
+    right: 0;
   }
 }
 

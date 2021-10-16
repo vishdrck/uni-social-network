@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {postTypes} from 'src/app/common/post.types';
 
 @Component({
   selector: 'yatter-post',
@@ -14,6 +13,7 @@ export class PostComponent implements OnInit {
   @Input() noOfComments = '0';
   @Input() postContent = '';
   @Input() postColor = '';
+  @Input() avatarImage = '';
 
   constructor() {
   }
@@ -23,6 +23,10 @@ export class PostComponent implements OnInit {
 
   getClass() {
     return this.postColor;
+  }
+
+  getProfileAvatar() {
+    return this.avatarImage ? `background-image: url('${this.avatarImage}')`: 'background-image: url(\'/assets/uploads/profile.jpg\')';
   }
 
   getSubTitle() {

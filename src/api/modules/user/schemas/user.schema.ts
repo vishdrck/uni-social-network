@@ -33,10 +33,18 @@ const schema = new SCHEMA({
     type: String,
     required: false
   },
+  profilePhoto: {
+    type: String,
+    required: false
+  },
+  coverPhoto: {
+    type: String,
+    required: false
+  },
   isDeleted: {
     type: Boolean,
     default: false
   }
 });
 
-export default mongoose.model('Users', schema,'users');
+export default mongoose.model('Users', schema, 'users');

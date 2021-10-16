@@ -8,7 +8,7 @@ export class UserService {
     user.save(callback);
   }
 
-  public editUser(_uid: mongoose.Types.ObjectId,userParams: IUser, callback: mongoose.Callback) {
+  public updateUser(_uid: mongoose.Types.ObjectId,userParams: IUser, callback: mongoose.Callback) {
     users.findOneAndUpdate({_uid: _uid},userParams,null,callback)
   }
 

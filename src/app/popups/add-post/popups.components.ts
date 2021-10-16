@@ -76,9 +76,6 @@ export class DialogAddAPostComponent implements OnInit {
   }
 
   onPublished() {
-    if (this.postType === 'standard') {
-
-    }
     if (this.postType === 'coloredPost') {
       if (this.coloredPostTextControl.value && this.whatsyourmindControl.value) {
         if (this.loggedUserDataStore.headers) {
@@ -149,7 +146,6 @@ export class DialogAddAPostComponent implements OnInit {
         this.snackbar.open('Please enter your thoughts', 'close', {duration: 3000});
       }
     }
-
     if (this.postType === 'standard') {
       if (this.files.length > 0 && this.whatsyourmindControl.value) {
         if (this.loggedUserDataStore.headers) {

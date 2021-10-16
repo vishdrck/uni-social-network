@@ -1,7 +1,15 @@
 <div class="container">
   <mat-card class="profile">
-    <mat-card-header class="profile__cover">
-      <div class="profile__avatar"></div>
+    <mat-card-header class="profile__cover" style="{{coverPhoto}}">
+      <button class="profile__menu" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Profile Menu">
+        <mat-icon>more_vert</mat-icon>
+        <mat-menu #menu>
+<!--          <button mat-menu-item> <mat-icon>dialpad</mat-icon> <span>Update Profile Photo</span></button>-->
+          <button mat-menu-item (click)="openProfileUploader()"><svg-icon customParentCss="display: inline-block;" customSVGCss="margin-right: 10px;" icon="profile-image"></svg-icon> <span>Update Profile Photo</span></button>
+          <button mat-menu-item (click)="openCoverUploader()"><svg-icon customParentCss="display: inline-block;" customSVGCss="margin-right: 10px;" icon="cover_photo"></svg-icon> <span>Update Cover Photo</span></button>
+        </mat-menu>
+      </button>
+      <div class="profile__avatar" style="{{profilePhoto}}"></div>
       <div class="profile__message">
         <button mat-fab color="white" aria-label="Message" matTooltip="Send Message">
           <svg-icon icon="chat"></svg-icon>
@@ -9,6 +17,8 @@
       </div>
     </mat-card-header>
     <mat-card-content class="profile__content">
+      <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-atom"
+                   [fullScreen]="false"></ngx-spinner>
       <div class="container-fluid pt-3">
         <form [formGroup]="editProfileFormGroup">
           <div class="row pb-3">
@@ -46,8 +56,9 @@
               </mat-form-field>
               <mat-form-field class="half-width" appearance="outline" style="margin-right: 2%;">
                 <mat-label>Academic Year</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let academicYear of academicYearList" [value]="academicYear.key">{{academicYear.value}}</mat-option>
+                <mat-select formControlName="academicYear">
+                  <mat-option *ngFor="let academicYear of academicYearList"
+                              [value]="academicYear.key">{{academicYear.value}}</mat-option>
                 </mat-select>
                 <svg-icon matSuffix customSVGCss="display: block" icon="university"></svg-icon>
                 <mat-hint>2018/19</mat-hint>
@@ -55,16 +66,17 @@
               </mat-form-field>
               <mat-form-field class="half-width" appearance="outline">
                 <mat-label>Combination</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let combination of combinationList" [value]="combination.key">{{combination.value}}</mat-option>
+                <mat-select formControlName="combination">
+                  <mat-option *ngFor="let combination of combinationList"
+                              [value]="combination.key">{{combination.value}}</mat-option>
                 </mat-select>
                 <svg-icon matSuffix customSVGCss="display: block" icon="team"></svg-icon>
-                <mat-hint>AS2018575</mat-hint>
+                <mat-hint>MAT/PHY/CS</mat-hint>
                 <mat-error>Combination is required</mat-error>
               </mat-form-field>
               <mat-form-field class="half-width" appearance="outline" style="margin-right: 2%;">
                 <mat-label>Faculty</mat-label>
-                <mat-select>
+                <mat-select formControlName="faculty">
                   <mat-option *ngFor="let faculty of facultiesList" [value]="faculty.key">{{faculty.value}}</mat-option>
                 </mat-select>
                 <svg-icon matSuffix customSVGCss="display: block" icon="university"></svg-icon>
@@ -73,8 +85,9 @@
               </mat-form-field>
               <mat-form-field class="half-width" appearance="outline">
                 <mat-label>Department</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let department of departmentList" [value]="department.key">{{department.value}}</mat-option>
+                <mat-select formControlName="department">
+                  <mat-option *ngFor="let department of departmentList"
+                              [value]="department.key">{{department.value}}</mat-option>
                 </mat-select>
                 <svg-icon matSuffix customSVGCss="display: block" icon="fire-department"></svg-icon>
                 <mat-hint>Department of Computer Science</mat-hint>
@@ -91,7 +104,7 @@
               </mat-form-field>
               <mat-form-field class="half-width" appearance="outline">
                 <mat-label>Password</mat-label>
-                <input type="text" [minLength]="6" matInput placeholder="Password" formControlName="username" required>
+                <input type="text" [minLength]="6" matInput placeholder="Password" formControlName="password">
                 <svg-icon matSuffix customSVGCss="display: block" icon="password"></svg-icon>
                 <mat-hint>123456</mat-hint>
                 <mat-error>Invalid Password Policy. Password should meet minimum 6 length characters.</mat-error>
@@ -105,10 +118,9 @@
       <div class="container-fluid">
         <div class="row pb-3">
           <div class="col-sm-12">
-            <button color="accent" class="w-full" mat-raised-button>Update</button>
+            <button color="accent" (click)="updateProfile()" class="w-full" mat-raised-button>Update</button>
           </div>
         </div>
-
       </div>
     </mat-card-actions>
   </mat-card>

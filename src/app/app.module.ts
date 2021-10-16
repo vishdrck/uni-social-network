@@ -28,6 +28,7 @@ import { FriendsComponent } from './pages/friends/friends.component';
 import { FriendCardComponent } from './components/friend-card/friend-card.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { SendMessageComponent } from './components/send-message/send-message.component';
+import {DialogUpdateProfileCoverComponent} from "./popups/update-profile-cover/popups.components";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SendMessageComponent } from './components/send-message/send-message.com
     SvgIconComponent,
     PostComponent,
     DialogAddAPostComponent,
+    DialogUpdateProfileCoverComponent,
     ProfileComponent,
     WallPostsComponent,
     FriendsComponent,
@@ -66,7 +68,9 @@ import { SendMessageComponent } from './components/send-message/send-message.com
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
   entryComponents: [
-    DialogAddAPostComponent
+    DialogAddAPostComponent,
+    DialogUpdateProfileCoverComponent
+
   ]
 })
 export class AppModule { }

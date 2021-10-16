@@ -18,6 +18,7 @@ export interface IDetailedPost {
   firstName: string;
   lastName?: string;
   username: string;
+  profilePhoto: string;
 }
 
 export interface IDetailedPostResponse {

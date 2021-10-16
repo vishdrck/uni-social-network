@@ -25,6 +25,8 @@ export interface IUser {
   combination?: string;
   faculty?: string;
   department?: string;
+  profilePhoto?: string;
+  coverPhoto?: string;
 }
 
 export interface IIAMUser {
