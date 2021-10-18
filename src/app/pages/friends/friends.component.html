@@ -1,28 +1,27 @@
 <mat-card class="friends friends__cover">
-  <mat-form-field appearance="outline" style="width: 96%;" class=" friends__searchForm">
-    <svg-icon matSuffix customSVGCss="display: block;" icon="profile"></svg-icon>
-    <input matInput placeholder="Start typing to search friends" type="text">
-  </mat-form-field>
+  <!--  <mat-form-field appearance="outline" style="width: 96%;" class=" friends__searchForm">-->
+  <!--    <svg-icon matSuffix customSVGCss="display: block;" icon="profile"></svg-icon>-->
+  <!--    <input matInput placeholder="Start typing to search friends" type="text">-->
+  <!--  </mat-form-field>-->
 </mat-card>
+<div>
+  <mat-radio-group [(ngModel)]="filterFriends" (change)="getFriends($event)" aria-label="Select an option">
+    <mat-radio-button class="friends__filter-item" checked value="all-users">All Users</mat-radio-button>
+    <mat-radio-button class="friends__filter-item" value="my-friends">My Friends</mat-radio-button>
+  </mat-radio-group>
+</div>
 <div class="friends__container">
   <div class="row">
-    <div class="col-md-6">
-      <app-friend-card></app-friend-card>
-    </div>
-    <div class="col-md-6">
-      <app-friend-card></app-friend-card>
-    </div>
-    <div class="col-md-6">
-      <app-friend-card></app-friend-card>
-    </div>
-    <div class="col-md-6">
-      <app-friend-card></app-friend-card>
-    </div>
-    <div class="col-md-6">
-      <app-friend-card></app-friend-card>
-    </div>
-    <div class="col-md-6">
-      <app-friend-card></app-friend-card>
+    <div class="col-md-6" *ngFor="let friend of friendsList">
+      <app-friend-card
+        _uid="{{friend._uid}}"
+        firstName="{{friend.firstName}}"
+        lastName="{{friend.lastName}}"
+        faculty="{{friend.faculty}}"
+        acadamicYear="{{friend.academicYear}}"
+        isAFriend="{{friend.isAFriend}}"
+        profilePhoto="{{friend.profilePhoto}}"
+      ></app-friend-card>
     </div>
   </div>
 

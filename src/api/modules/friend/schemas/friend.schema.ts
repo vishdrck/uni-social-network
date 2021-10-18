@@ -17,7 +17,7 @@ const schema = new SCHEMA({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users'
   },
-  acceptedDate: {
+  requestedDate: {
     type: Date
   }
 });

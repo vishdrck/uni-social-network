@@ -12,12 +12,15 @@ import logger from "../helpers/logger";
 import axios from "axios";
 import env from '../env';
 import {UserService} from "../modules/user/services/user.service";
+import {FriendService} from "../modules/friend/services/friend.service";
+import {IFriend} from "../modules/friend/types/friend.type";
 
 export class PostController {
 
   private authService: AuthController = new AuthController();
   private postService: PostService = new PostService();
   private userService: UserService = new UserService();
+  private friendService: FriendService = new FriendService();
 
   public createPost(req: Request, res: Response) {
     this.authService.validateLogin(req, res, (dataLoggedUser: IIAMUser) => {
@@ -69,56 +72,66 @@ export class PostController {
             internalErrorResponseService(err, res);
           } else {
             if (dataUser && dataUser.length && dataUser.length === 1) {
-              let skip = 0;
-              if (req.query.skip) {
-                skip = parseInt(req.query.skip.toString());
-              }
-              let filter = {};
-              filter = queryBuilderHelper.objectIdMatcher(filter, '_uid', dataLoggedUser._uid);
-              this.postService.filterPostPagination(filter, 10, skip, (error: any, dataPosts: IPost[]) => {
-                if (error) {
-                  internalErrorResponseService(error, res);
-                } else {
-                  if (dataPosts && dataPosts.length && dataPosts.length > 0) {
-                    const uids = dataPosts.map(user => {
-                      return user._uid.toString();
-                    });
-                    const url = env.getIamUrl('user/all');
-                    axios.patch(url, {users: uids}).then(response => {
-                      if (response.data && response.data.STATUS && response.data.STATUS === 'success' && response.data.DATA && response.data.DATA.length > 0) {
-                        const users = response.data.DATA;
-                        const allPosts = dataPosts.map((post) => {
-                          const postAuthor: IIAMUser[] = users.filter((user: IIAMUser) => user._uid.toString() === post._uid.toString());
-                          if (postAuthor && postAuthor.length && postAuthor.length === 1) {
-                            return {
-                              _id: post._id,
-                              _uid: postAuthor[0]._uid,
-                              firstName: postAuthor[0].firstName,
-                              lastName: postAuthor[0].lastName ? postAuthor[0].lastName : '',
-                              username: postAuthor[0].username,
-                              postContent: post.postContent ? post.postContent : '',
-                              postColor: post.postColor ? post.postColor : '',
-                              postType: post.postType ? post.postType : '',
-                              publishedIn: post.publishedIn,
-                              title: post.title ? post.title : '',
-                              imagePath: post.imagePath ? 'uploads/' + post.imagePath : '',
-                              reactions: post.reactions,
-                              profilePhoto: dataUser[0].profilePhoto? 'uploads/' + dataUser[0].profilePhoto: ''
-                            } as IDetailedPost;
-                          }
-                        }).filter(Boolean);
-                        sendResponseService(HTTPCODES.SUCCESS, 'success', 'Posts found', allPosts, res);
-                      } else {
-                        sendResponseService(HTTPCODES.SUCCESS, 'success', 'No users found', [], res);
-                        // no users found
-                      }
-                    });
-                  } else {
-                    sendResponseService(HTTPCODES.SUCCESS, 'success', 'Posts found', {}, res);
-                    // no posts
-                  }
+              this.friendService.filterFriends({_uid: dataLoggedUser._uid},(err_: any, friendsList: IFriend[])=> {
+                let uids_ = friendsList.map(friend => {
+                  return friend._fuid.toString();
+                });
+
+                uids_.push(dataLoggedUser._uid.toString());
+
+                let skip = 0;
+                if (req.query.skip) {
+                  skip = parseInt(req.query.skip.toString());
                 }
+                let filter = {};
+                filter = queryBuilderHelper.arrayElementMatcher(filter, '_uid', uids_);
+                this.postService.filterPostPagination(filter, 10, skip, (error: any, dataPosts: IPost[]) => {
+                  if (error) {
+                    internalErrorResponseService(error, res);
+                  } else {
+                    if (dataPosts && dataPosts.length && dataPosts.length > 0) {
+                      const uids = dataPosts.map(user => {
+                        return user._uid.toString();
+                      });
+                      const url = env.getIamUrl('user/all');
+                      axios.patch(url, {users: uids}).then(response => {
+                        if (response.data && response.data.STATUS && response.data.STATUS === 'success' && response.data.DATA && response.data.DATA.length > 0) {
+                          const users = response.data.DATA;
+                          const allPosts = dataPosts.map((post) => {
+                            const postAuthor: IIAMUser[] = users.filter((user: IIAMUser) => user._uid.toString() === post._uid.toString());
+                            if (postAuthor && postAuthor.length && postAuthor.length === 1) {
+                              return {
+                                _id: post._id,
+                                _uid: postAuthor[0]._uid,
+                                firstName: postAuthor[0].firstName,
+                                lastName: postAuthor[0].lastName ? postAuthor[0].lastName : '',
+                                username: postAuthor[0].username,
+                                postContent: post.postContent ? post.postContent : '',
+                                postColor: post.postColor ? post.postColor : '',
+                                postType: post.postType ? post.postType : '',
+                                publishedIn: post.publishedIn,
+                                title: post.title ? post.title : '',
+                                imagePath: post.imagePath ? '/uploads/' + post.imagePath : '',
+                                reactions: post.reactions,
+                                profilePhoto: dataUser[0].profilePhoto? '/uploads/' + dataUser[0].profilePhoto: ''
+                              } as IDetailedPost;
+                            }
+                          }).filter(Boolean);
+                          sendResponseService(HTTPCODES.SUCCESS, 'success', 'Posts found', allPosts, res);
+                        } else {
+                          sendResponseService(HTTPCODES.SUCCESS, 'success', 'No users found', [], res);
+                          // no users found
+                        }
+                      });
+                    } else {
+                      sendResponseService(HTTPCODES.SUCCESS, 'success', 'Posts not found', [], res);
+                      // no posts
+                    }
+                  }
+                });
+
               });
+
             } else {
               sendResponseService(HTTPCODES.SUCCESS, 'success', 'No user found', [], res);
             }

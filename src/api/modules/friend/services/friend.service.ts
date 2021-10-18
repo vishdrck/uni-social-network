@@ -1,6 +1,7 @@
 import {IFriend} from "../types/friend.type";
 import friends from '../schemas/friend.schema';
 import mongoose from "mongoose";
+import posts from "../../post/schemas/post.schema";
 
 export class FriendService {
   public createFriend(friendParams: IFriend, callback: mongoose.Callback) {
@@ -18,5 +19,13 @@ export class FriendService {
 
   public restoreFriend(_uid: mongoose.Types.ObjectId,callback: mongoose.Callback) {
     friends.findOneAndUpdate({_uid: _uid}, {isDeleted: false}, callback);
+  }
+
+  public filterFriendPagination(filters: any, limit: number, skip: number, callback: mongoose.Callback) {
+    friends.find(filters).limit(limit).skip(skip).sort({'publishedIn': -1}).exec(callback);
+  }
+
+  public filterFriends(filters: any, callback: mongoose.Callback) {
+    friends.find(filters,callback);
   }
 }

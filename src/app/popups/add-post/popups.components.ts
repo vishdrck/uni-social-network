@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {LoggedUserDataStore} from "../../data/logged-user.data-store";
 import constants from '../../services/constants.service';
 import {Router} from "@angular/router";
+import {LocalStorage} from "@ngx-pwa/local-storage";
 
 @Component({
   selector: 'app-dialog-add-a-post-dialog',
@@ -44,9 +45,10 @@ export class DialogAddAPostComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public postType: string,
     public snackbar: MatSnackBar,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private localStorage: LocalStorage
   ) {
-    this.className = '';
+    this.className = 'colored-post__pattern-item-red';
   }
 
   ngOnInit() {
@@ -76,25 +78,30 @@ export class DialogAddAPostComponent implements OnInit {
   }
 
   onPublished() {
+    console.log(this.getClass());
     if (this.postType === 'coloredPost') {
       if (this.coloredPostTextControl.value && this.whatsyourmindControl.value) {
-        if (this.loggedUserDataStore.headers) {
-          const url = constants.getURL('post/create');
-          this.http.post(url,{
-            postType: this.postType,
-            className: this.className,
-            postContent: this.coloredPostTextControl.value,
-            postTitle: this.whatsyourmindControl.value
-          },this.loggedUserDataStore.headers).subscribe( (response:any) => {
-            if(response.STATUS && response.STATUS === 'success') {
-              this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
-              window.location.reload();
-              // this.dialogRef.close();
-            } else {
-              this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
-            }
-          });
-        }
+        this.localStorage.getItem('token').subscribe((token) => {
+          if (token) {
+            const url = constants.getURL('post/create');
+            this.http.post(url, {
+              postType: this.postType,
+              className: this.getClass(),
+              postContent: this.coloredPostTextControl.value,
+              postTitle: this.whatsyourmindControl.value
+            }, {headers: {Authorization: `Bearer ${token}`}}).subscribe((response: any) => {
+              if (response.STATUS && response.STATUS === 'success') {
+                this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
+                window.location.reload();
+                // this.dialogRef.close();
+              } else {
+                this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
+              }
+            });
+          } else {
+            this.router.navigate(['/account/login']);
+          }
+        });
 
       } else {
         this.snackbar.open('Please enter your thoughts', 'close', {duration: 3000});
@@ -102,22 +109,26 @@ export class DialogAddAPostComponent implements OnInit {
     }
     if (this.postType === 'checkin') {
       if (this.checkin.value && this.whatsyourmindControl.value) {
-        if (this.loggedUserDataStore.headers) {
-          const url = constants.getURL('post/create');
-          this.http.post(url,{
-            postType: this.postType,
-            postContent: this.checkin.value,
-            postTitle: this.whatsyourmindControl.value
-          },this.loggedUserDataStore.headers).subscribe( (response:any) => {
-            if(response.STATUS && response.STATUS === 'success') {
-              this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
-              window.location.reload();
-              // this.dialogRef.close();
-            } else {
-              this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
-            }
-          });
-        }
+        this.localStorage.getItem('token').subscribe((token) => {
+          if (token) {
+            const url = constants.getURL('post/create');
+            this.http.post(url, {
+              postType: this.postType,
+              postContent: this.checkin.value,
+              postTitle: this.whatsyourmindControl.value
+            }, {headers: {Authorization: `Bearer ${token}`}}).subscribe((response: any) => {
+              if (response.STATUS && response.STATUS === 'success') {
+                this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
+                window.location.reload();
+                // this.dialogRef.close();
+              } else {
+                this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
+              }
+            });
+          } else {
+            this.router.navigate(['/account/login']);
+          }
+        });
 
       } else {
         this.snackbar.open('Please enter your thoughts', 'close', {duration: 3000});
@@ -125,22 +136,24 @@ export class DialogAddAPostComponent implements OnInit {
     }
     if (this.postType === 'feeling') {
       if (this.feelingControl.value && this.whatsyourmindControl.value) {
-        if (this.loggedUserDataStore.headers) {
-          const url = constants.getURL('post/create');
-          this.http.post(url,{
-            postType: this.postType,
-            postContent: this.feelingControl.value,
-            postTitle: this.whatsyourmindControl.value
-          },this.loggedUserDataStore.headers).subscribe( (response:any) => {
-            if(response.STATUS && response.STATUS === 'success') {
-              this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
-              window.location.reload();
-              // this.dialogRef.close();
-            } else {
-              this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
-            }
-          });
-        }
+        this.localStorage.getItem('token').subscribe((token) => {
+          if (token) {
+            const url = constants.getURL('post/create');
+            this.http.post(url, {
+              postType: this.postType,
+              postContent: this.feelingControl.value,
+              postTitle: this.whatsyourmindControl.value
+            }, {headers: {Authorization: `Bearer ${token}`}}).subscribe((response: any) => {
+              if (response.STATUS && response.STATUS === 'success') {
+                this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
+                window.location.reload();
+                // this.dialogRef.close();
+              } else {
+                this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
+              }
+            });
+          }
+        });
 
       } else {
         this.snackbar.open('Please enter your thoughts', 'close', {duration: 3000});
@@ -148,25 +161,27 @@ export class DialogAddAPostComponent implements OnInit {
     }
     if (this.postType === 'standard') {
       if (this.files.length > 0 && this.whatsyourmindControl.value) {
-        if (this.loggedUserDataStore.headers) {
-          const url = constants.getURL('post/create');
+        this.localStorage.getItem('token').subscribe((token) => {
+          if (token) {
+            const url = constants.getURL('post/create');
 
-          const formData = new FormData();
-          formData.append('file', this.files[0]);
-          formData.append('postType', this.postType);
-          formData.append('postContent', '');
-          formData.append('postTitle', this.whatsyourmindControl.value);
+            const formData = new FormData();
+            formData.append('file', this.files[0]);
+            formData.append('postType', this.postType);
+            formData.append('postContent', '');
+            formData.append('postTitle', this.whatsyourmindControl.value);
 
-          this.http.post(url,formData,this.loggedUserDataStore.headers).subscribe( (response:any) => {
-            if(response.STATUS && response.STATUS === 'success') {
-              this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
-              window.location.reload();
-              // this.dialogRef.close();
-            } else {
-              this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
-            }
-          });
-        }
+            this.http.post(url, formData, {headers: {Authorization: `Bearer ${token}`}}).subscribe((response: any) => {
+              if (response.STATUS && response.STATUS === 'success') {
+                this.snackbar.open('Post has been published successfully', 'close', {duration: 3000});
+                window.location.reload();
+                // this.dialogRef.close();
+              } else {
+                this.snackbar.open('Something went wrong!. Please try again', 'close', {duration: 3000});
+              }
+            });
+          }
+        });
 
       } else {
         this.snackbar.open('Please enter your thoughts', 'close', {duration: 3000});

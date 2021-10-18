@@ -79,6 +79,7 @@ export class UserController {
         }
       ).then(response => {
         if (response.data && response.data.STATUS && response.data.STATUS === 'success') {
+          console.log(response.data)
           if (response.data.DATA &&
             response.data.DATA._uid &&
             response.data.DATA.email &&
@@ -143,8 +144,8 @@ export class UserController {
                 combination: dataUser[0].combination ? dataUser[0].combination : '',
                 department: dataUser[0].department ? dataUser[0].department : '',
                 faculty: dataUser[0].faculty ? dataUser[0].faculty : '',
-                profilePhoto: dataUser[0].profilePhoto? 'uploads/' + dataUser[0].profilePhoto: '',
-                coverPhoto: dataUser[0].coverPhoto? 'uploads/' + dataUser[0].coverPhoto: ''
+                profilePhoto: dataUser[0].profilePhoto? '/uploads/' + dataUser[0].profilePhoto: '',
+                coverPhoto: dataUser[0].coverPhoto? '/uploads/' + dataUser[0].coverPhoto: ''
               } as IProfile, res);
             } else {
               sendResponseService(HTTPCODES.SUCCESS, 'failed', 'User not found', {}, res);
@@ -231,8 +232,8 @@ export class UserController {
                   } else {
                     sendResponseService(HTTPCODES.SUCCESS, 'failed', 'Profile updated failed', {}, res);
                   }
-                }).catch(err => {
-                  logger.log(err);
+                }).catch((err ) => {
+                  logger.log(err.response);
                 });
               }
             } else {

@@ -4,6 +4,6 @@ export interface IFriend {
   _id?: mongoose.Types.ObjectId;
   _uid: mongoose.Types.ObjectId;
   _fuid: mongoose.Types.ObjectId;
-  acceptedDate: Date;
+  requestedDate: Date;
 
 }

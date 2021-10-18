@@ -34,6 +34,9 @@ export class PostsComponent implements OnInit {
           if (dataPosts.STATUS && dataPosts.STATUS === 'success' && dataPosts.DATA.length && dataPosts.DATA.length > 0) {
             this.allPosts = dataPosts.DATA;
             this.enableSpinner = false;
+          } else {
+            this.enableNoResults = true;
+            this.enableSpinner = false;
           }
         });
       } else {

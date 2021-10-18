@@ -68,3 +68,14 @@ export interface IProfile {
   department?: string;
   username: string;
 }
+
+export interface IFriendsList {
+  _uid: any;
+  firstName: string;
+  lastName?: string;
+  username: string;
+  faculty?: string;
+  academicYear?: string;
+  profilePhoto?: string;
+  isAFriend: boolean;
+}

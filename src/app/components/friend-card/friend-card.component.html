@@ -1,27 +1,28 @@
 <mat-card class="friends-card friends-card__cover">
-
+  <ngx-spinner name="{{'spinner_' + _uid.toString() }}" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-atom"
+               [fullScreen]="false"></ngx-spinner>
   <!--  <div class="row">-->
   <!--    <h2 class="text-center">Vishwajith Weerasinghe</h2>-->
   <!--  </div>-->
   <div class="row">
     <div class="col-md-5 text-center">
-      <div class="friends-card__ friends-card__avatar"></div>
+      <div class="friends-card__ friends-card__avatar" [style]="getAvatar()"></div>
     </div>
     <div class="col-md-7 text-center">
       <div class="friends-card__name_title">
-        <h5 class="text-center"><b>Vishwajith Weerasinghe</b></h5>
+        <h5 class="text-center"><b>{{firstName + " " +lastName}}</b></h5>
       </div>
       <div class="friends-card__name_title">
         <mat-chip-list>
-          <mat-chip>2018/19</mat-chip>
-          <mat-chip>FAS</mat-chip>
+          <mat-chip *ngIf="acadamicYear">{{acadamicYear}}</mat-chip>
+          <mat-chip *ngIf="faculty">{{faculty}}</mat-chip>
         </mat-chip-list>
       </div>
       <div class="friends-card__name_title">
-        <button mat-icon-button aria-label="Send Request" matTooltip="Send Request">
+        <button *ngIf="isAFriend==='false'" (click)="addFriend(_uid)" mat-icon-button aria-label="Send Request" matTooltip="Send Request">
           <svg-icon customSVGCss="" icon="add_user"></svg-icon>
         </button>
-        <button *ngIf="false" mat-icon-button aria-label="Cancel Request" matTooltip="Cancel Request">
+        <button *ngIf="isAFriend==='true'" mat-icon-button aria-label="Remove Friend" matTooltip="Remove Friend">
           <svg-icon customSVGCss="" icon="added-user"></svg-icon>
         </button>
         <button mat-icon-button aria-label="Send Message" matTooltip="Send Message">

@@ -26,7 +26,7 @@ export class PostComponent implements OnInit {
   }
 
   getProfileAvatar() {
-    return this.avatarImage ? `background-image: url('${this.avatarImage}')`: 'background-image: url(\'/assets/uploads/profile.jpg\')';
+    return this.avatarImage ? `background-image: url('${this.avatarImage}')`: 'background-image: url(\'/uploads/profile.jpg\')';
   }
 
   getSubTitle() {
