@@ -24,5 +24,9 @@ export class FriendRoutes {
     app.get('/friends/my',(req: Request,res: Response)=> {
       this.friendController.getMyFriends(req,res);
     });
+
+    app.delete('/friends/delete',(req: Request,res: Response)=> {
+      this.friendController.removeFriend(req,res);
+    });
   }
 }

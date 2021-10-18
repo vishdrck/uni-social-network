@@ -13,8 +13,8 @@ export class FriendService {
     friends.findOneAndUpdate({_uid: _uid},friendParams,null,callback)
   }
 
-  public deleteFriend(_uid: mongoose.Types.ObjectId,callback: mongoose.Callback) {
-    friends.findOneAndUpdate({_uid: _uid}, {isDeleted: true}, callback);
+  public deleteFriend(id: mongoose.Types.ObjectId,callback: mongoose.Callback) {
+    friends.findByIdAndDelete({_id: id},  callback);
   }
 
   public restoreFriend(_uid: mongoose.Types.ObjectId,callback: mongoose.Callback) {

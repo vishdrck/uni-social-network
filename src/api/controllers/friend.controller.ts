@@ -14,6 +14,7 @@ import {IFriend} from "../modules/friend/types/friend.type";
 import mongoose from "mongoose";
 import {FriendService} from "../modules/friend/services/friend.service";
 import {IDetailedPost} from "../modules/post/types/post.type";
+import {filter} from "rxjs/operators";
 
 export class FriendController {
   private authService: AuthController = new AuthController();
@@ -133,7 +134,7 @@ export class FriendController {
     });
   }
 
-  public getMyFriends(req: Request,res: Response) {
+  public getMyFriends(req: Request, res: Response) {
     this.authService.validateLogin(req, res, (dataLoggedUser: IIAMUser) => {
       if (dataLoggedUser) {
         this.userService.filterUsers({_uid: dataLoggedUser._uid}, (err: any, dataUser: IUser[]) => {
@@ -156,20 +157,14 @@ export class FriendController {
                     if (response.data && response.data.STATUS && response.data.STATUS === 'success' && response.data.DATA && response.data.DATA.length > 0) {
                       const iamUsersList = response.data.DATA;
                       let filters_ = {};
-                      filters_ = queryBuilderHelper.arrayElementMatcher(filters_, '_uid',uids);
+                      filters_ = queryBuilderHelper.arrayElementMatcher(filters_, '_uid', uids);
                       this.userService.filterUsers(filters_, (_err: any, friendUsers: IUser[]) => {
-                        console.log('users');
-                        console.log(friendUsers);
                         if (_err) {
                           internalErrorResponseService(_err, res);
                         } else {
                           const myFriends = friends.map(_friend => {
                             const iamUser: IIAMUser[] = iamUsersList.filter((user: IIAMUser) => user._uid.toString() === _friend._fuid.toString());
-                            console.log('iamuser');
-                            console.log(iamUser);
                             const friendUser: IUser[] = friendUsers.filter((user: IUser) => user._uid.toString() === _friend._fuid.toString());
-                            console.log('friendUser');
-                            console.log(friendUser);
 
                             if (iamUser && iamUser.length && iamUser.length === 1 && friendUser && friendUser.length && friendUser.length === 1) {
                               return {
@@ -199,6 +194,49 @@ export class FriendController {
           }
         });
 
+      } else {
+        sendResponseService(HTTPCODES.ERR_UNAUTHORIZED, 'failed', 'Logged user not found', {}, res);
+      }
+    });
+  }
+
+  public removeFriend(req: Request, res: Response) {
+    this.authService.validateLogin(req, res, (dataLoggedUser: IIAMUser) => {
+      if (dataLoggedUser) {
+        this.userService.filterUsers({_uid: dataLoggedUser._uid}, (err: any, dataUser: IUser[]) => {
+          if (err) {
+            internalErrorResponseService(err, res);
+          } else {
+            if (dataUser && dataUser.length && dataUser.length === 1) {
+              let filters = {};
+              filters = queryBuilderHelper.objectIdMatcher(filters, '_uid', dataUser[0]._uid);
+              filters = queryBuilderHelper.objectIdMatcher(filters, '_fuid', req.query.fuid);
+              this.friendService.filterFriends(filters, (_err: any, friends: IFriend[]) => {
+                if (_err) {
+                  internalErrorResponseService(_err,res);
+                } else {
+                  if (friends && friends.length && friends.length === 1) {
+                    this.friendService.deleteFriend(new mongoose.Types.ObjectId(friends[0]._id),(error_:any,isDeleted: boolean)=> {
+                      if(error_) {
+                        internalErrorResponseService(error_,res);
+                      } else {
+                        if(isDeleted) {
+                          sendResponseService(HTTPCODES.SUCCESS, 'success', 'Friend deleted successfully', [], res);
+                        } else {
+                          sendResponseService(HTTPCODES.SUCCESS, 'failed', 'Friend delete failed ', [], res);
+                        }
+                      }
+                    });
+                  } else {
+                    sendResponseService(HTTPCODES.SUCCESS, 'failed', 'Friend not found', [], res);
+                  }
+                }
+              });
+            } else {
+              sendResponseService(HTTPCODES.SUCCESS, 'failed', 'User not found', [], res);
+            }
+          }
+        });
       } else {
         sendResponseService(HTTPCODES.ERR_UNAUTHORIZED, 'failed', 'Logged user not found', {}, res);
       }

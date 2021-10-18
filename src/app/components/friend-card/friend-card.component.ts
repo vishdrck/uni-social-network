@@ -58,4 +58,25 @@ export class FriendCardComponent implements OnInit {
 
   }
 
+  public removeFriend(fuid: string) {
+    this.spinner.show('spinner_' + this._uid.toString());
+    this.localStorage.getItem('token').subscribe(token => {
+      if (token) {
+        const url = constants.getURL(`friends/delete?fuid=${fuid}`);
+        this.http.delete(url, {headers: {Authorization: `Bearer ${token}`}}).subscribe((response: any) => {
+          if(response && response.STATUS && response.STATUS === 'success') {
+            this.snackbar.open('Friend removed successfully','close', {duration: 3000}).afterDismissed().subscribe(e =>{
+              window.location.reload();
+            });
+          } else {
+            this.spinner.hide();
+            this.snackbar.open('Something went wrong!','close', {duration: 3000});
+          }
+        });
+      } else {
+        this.router.navigate(['/account/login']);
+      }
+    });
+
+  }
 }

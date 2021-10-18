@@ -13,7 +13,8 @@ import {MatRadioChange} from "@angular/material/radio";
   styleUrls: ['./friends.component.scss']
 })
 export class FriendsComponent implements OnInit {
-
+  enableSpinner = false;
+  enableNoResults = false;
   filterFriends = 'all-users';
   friendsList: IFriendsList[] = [];
 
@@ -41,12 +42,15 @@ export class FriendsComponent implements OnInit {
   }
 
   public getAllFriends() {
+    this.enableSpinner = true;
     this.localStorage.getItem('token').subscribe(token => {
       if (token) {
         const url = constants.getURL('friends/all');
         this.http.get(url, {headers: {Authorization: `Bearer ${token}`}}).subscribe((response: any) => {
           if (response && response.STATUS && response.STATUS === 'success') {
             this.friendsList = response.DATA;
+            this.enableSpinner = false;
+
           }
         });
       } else {
@@ -56,11 +60,13 @@ export class FriendsComponent implements OnInit {
   }
 
   public getMyFriends() {
+    this.enableSpinner = true;
     this.localStorage.getItem('token').subscribe(token => {
       if (token) {
         const url = constants.getURL('friends/my');
         this.http.get(url, {headers: {Authorization: `Bearer ${token}`}}).subscribe((response: any) => {
           if (response && response.STATUS && response.STATUS === 'success') {
+            this.enableSpinner = false;
             this.friendsList = response.DATA;
           }
         });

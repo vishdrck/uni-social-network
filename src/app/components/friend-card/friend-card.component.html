@@ -22,13 +22,13 @@
         <button *ngIf="isAFriend==='false'" (click)="addFriend(_uid)" mat-icon-button aria-label="Send Request" matTooltip="Send Request">
           <svg-icon customSVGCss="" icon="add_user"></svg-icon>
         </button>
-        <button *ngIf="isAFriend==='true'" mat-icon-button aria-label="Remove Friend" matTooltip="Remove Friend">
+        <button *ngIf="isAFriend==='true'" (click)="removeFriend(_uid)" mat-icon-button aria-label="Remove Friend" matTooltip="Remove Friend">
           <svg-icon customSVGCss="" icon="added-user"></svg-icon>
         </button>
-        <button mat-icon-button aria-label="Send Message" matTooltip="Send Message">
-          <svg-icon customSVGCss="" icon="chat"></svg-icon>
-<!--          <mat-icon>home</mat-icon>-->
-        </button>
+<!--        <button mat-icon-button aria-label="Send Message" matTooltip="Send Message">-->
+<!--          <svg-icon customSVGCss="" icon="chat"></svg-icon>-->
+<!--&lt;!&ndash;          <mat-icon>home</mat-icon>&ndash;&gt;-->
+<!--        </button>-->
       </div>
       <!--      <button mat-raised-button style="margin-top: 10px;width: 100%" color="primary">Add Friend</button>-->
       <!--      <button mat-raised-button style="margin-top: 5px;width: 100%" color="accent" routerLink="/account/feeds/people">View Profile</button>-->
